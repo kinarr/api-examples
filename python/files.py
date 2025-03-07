@@ -17,11 +17,11 @@ import pathlib
 
 media = pathlib.Path(__file__).parents[1] / "third_party"
 
-
 class UnitTests(absltest.TestCase):
     def test_files_create_text(self):
         # [START files_create_text]
         from google import genai
+
         client = genai.Client()
         myfile = client.files.upload(file=media / "poem.txt")
         print(f"{myfile=}")
@@ -36,6 +36,7 @@ class UnitTests(absltest.TestCase):
     def test_files_create_image(self):
         # [START files_create_image]
         from google import genai
+
         client = genai.Client()
         myfile = client.files.upload(file=media / "Cajun_instruments.jpg")
         print(f"{myfile=}")
@@ -50,6 +51,7 @@ class UnitTests(absltest.TestCase):
     def test_files_create_audio(self):
         # [START files_create_audio]
         from google import genai
+
         client = genai.Client()
         myfile = client.files.upload(file=media / "sample.mp3")
         print(f"{myfile=}")
@@ -87,6 +89,7 @@ class UnitTests(absltest.TestCase):
     def test_files_create_pdf(self):
         # [START files_create_pdf]
         from google import genai
+
         client = genai.Client()
         sample_pdf = client.files.upload(file=media / "test.pdf")
         response = client.models.generate_content(
@@ -118,6 +121,7 @@ class UnitTests(absltest.TestCase):
     def test_files_list(self):
         # [START files_list]
         from google import genai
+
         client = genai.Client()
         print("My files:")
         for f in client.files.list():
@@ -127,6 +131,7 @@ class UnitTests(absltest.TestCase):
     def test_files_get(self):
         # [START files_get]
         from google import genai
+
         client = genai.Client()
         myfile = client.files.upload(file=media / "poem.txt")
         file_name = myfile.name
@@ -139,7 +144,7 @@ class UnitTests(absltest.TestCase):
     def test_files_delete(self):
         # [START files_delete]
         from google import genai
-        from google.api_core import exceptions
+
         client = genai.Client()
         myfile = client.files.upload(file=media / "poem.txt")
 
@@ -150,10 +155,10 @@ class UnitTests(absltest.TestCase):
                 model="gemini-2.0-flash",
                 contents=[myfile, "Describe this file."]
             )
+            print(result)
         except genai.errors.ClientError:
             pass
         # [END files_delete]
-
 
 if __name__ == "__main__":
     absltest.main()

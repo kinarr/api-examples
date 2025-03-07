@@ -19,6 +19,7 @@ class UnitTests(absltest.TestCase):
         # [START safety_settings]
         from google import genai
         from google.genai import types
+
         client = genai.Client()
         unsafe_prompt = (
             "I support Martians Soccer Club and I think Jupiterians Football Club sucks! "
@@ -45,6 +46,7 @@ class UnitTests(absltest.TestCase):
         # [START safety_settings_multi]
         from google import genai
         from google.genai import types
+        
         client = genai.Client()
         unsafe_prompt = (
             "I support Martians Soccer Club and I think Jupiterians Football Club sucks! "
