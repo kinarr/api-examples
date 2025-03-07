@@ -18,6 +18,7 @@ class UnitTests(absltest.TestCase):
     def test_models_list(self):
         # [START models_list]
         from google import genai
+
         client = genai.Client()
 
         print("List of models that support generateContent:\n")
@@ -36,6 +37,7 @@ class UnitTests(absltest.TestCase):
     def test_models_get(self):
         # [START models_get]
         from google import genai
+        
         client = genai.Client()
         model_info = client.models.get(model="gemini-2.0-flash")
         print(model_info)

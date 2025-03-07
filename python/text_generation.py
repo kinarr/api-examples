@@ -12,12 +12,11 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from absl.testing import absltest
 
 import pathlib
+from absl.testing import absltest
 
 media = pathlib.Path(__file__).parents[1] / "third_party"
-
 
 class UnitTests(absltest.TestCase):
     def test_text_gen_text_only_prompt(self):
@@ -49,7 +48,6 @@ class UnitTests(absltest.TestCase):
     def test_text_gen_multimodal_one_image_prompt(self):
         # [START text_gen_multimodal_one_image_prompt]
         from google import genai
-
         import PIL.Image
 
         client = genai.Client()
@@ -64,7 +62,6 @@ class UnitTests(absltest.TestCase):
     def test_text_gen_multimodal_one_image_prompt_streaming(self):
         # [START text_gen_multimodal_one_image_prompt_streaming]
         from google import genai
-
         import PIL.Image
 
         client = genai.Client()
@@ -81,7 +78,6 @@ class UnitTests(absltest.TestCase):
     def test_text_gen_multimodal_multi_image_prompt(self):
         # [START text_gen_multimodal_multi_image_prompt]
         from google import genai
-
         import PIL.Image
 
         client = genai.Client()
@@ -97,7 +93,6 @@ class UnitTests(absltest.TestCase):
     def test_text_gen_multimodal_multi_image_prompt_streaming(self):
         # [START text_gen_multimodal_multi_image_prompt_streaming]
         from google import genai
-
         import PIL.Image
 
         client = genai.Client()
@@ -143,7 +138,6 @@ class UnitTests(absltest.TestCase):
     def test_text_gen_multimodal_video_prompt(self):
         # [START text_gen_multimodal_video_prompt]
         from google import genai
-
         import time
 
         client = genai.Client()
@@ -167,7 +161,6 @@ class UnitTests(absltest.TestCase):
     def test_text_gen_multimodal_video_prompt_streaming(self):
         # [START text_gen_multimodal_video_prompt_streaming]
         from google import genai
-
         import time
 
         client = genai.Client()
@@ -218,7 +211,6 @@ class UnitTests(absltest.TestCase):
             print(chunk.text)
             print("_" * 80)
         # [END text_gen_multimodal_pdf_streaming]
-
 
 if __name__ == "__main__":
     absltest.main()
