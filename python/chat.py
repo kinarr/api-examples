@@ -19,6 +19,7 @@ media = pathlib.Path(__file__).parents[1] / "third_party"
 
 
 class UnitTests(absltest.TestCase):
+
     def test_chat(self):
         # [START chat]
         from google import genai
@@ -30,8 +31,15 @@ class UnitTests(absltest.TestCase):
             model="gemini-2.0-flash",
             history=[
                 types.Content(role="user", parts=[types.Part(text="Hello")]),
-                types.Content(role="model", parts=[types.Part(text="Great to meet you. What would you like to know?")])
-            ]
+                types.Content(
+                    role="model",
+                    parts=[
+                        types.Part(
+                            text="Great to meet you. What would you like to know?"
+                        )
+                    ],
+                ),
+            ],
         )
         response = chat.send_message(message="I have 2 dogs in my house.")
         print(response.text)
@@ -49,8 +57,15 @@ class UnitTests(absltest.TestCase):
             model="gemini-2.0-flash",
             history=[
                 types.Content(role="user", parts=[types.Part(text="Hello")]),
-                types.Content(role="model", parts=[types.Part(text="Great to meet you. What would you like to know?")])
-            ]
+                types.Content(
+                    role="model",
+                    parts=[
+                        types.Part(
+                            text="Great to meet you. What would you like to know?"
+                        )
+                    ],
+                ),
+            ],
         )
         response = chat.send_message_stream(message="I have 2 dogs in my house.")
         for chunk in response:
@@ -72,7 +87,9 @@ class UnitTests(absltest.TestCase):
         client = genai.Client()
         chat = client.chats.create(model="gemini-2.0-flash")
 
-        response = chat.send_message_stream(message="Hello, I'm interested in learning about musical instruments. Can I show you one?")
+        response = chat.send_message_stream(
+            message="Hello, I'm interested in learning about musical instruments. Can I show you one?"
+        )
         for chunk in response:
             print(chunk.text)
             print("_" * 80)
@@ -80,7 +97,10 @@ class UnitTests(absltest.TestCase):
         # Upload image file locally
         image_file = client.files.upload(file=media / "organ.jpg")
         response = chat.send_message_stream(
-            message=["What family of instruments does this instrument belong to?", image_file]
+            message=[
+                "What family of instruments does this instrument belong to?",
+                image_file,
+            ]
         )
         for chunk in response:
             print(chunk.text)

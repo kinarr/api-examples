@@ -14,7 +14,9 @@
 # limitations under the License.
 from absl.testing import absltest
 
+
 class UnitTests(absltest.TestCase):
+
     def test_configure_model(self):
         # [START configure_model_parameters]
         from google import genai
@@ -28,11 +30,12 @@ class UnitTests(absltest.TestCase):
                 candidate_count=1,
                 stop_sequences=["x"],
                 max_output_tokens=20,
-                temperature=1.0
-            )
+                temperature=1.0,
+            ),
         )
         print(response.text)
         # [END configure_model_parameters]
+
 
 if __name__ == "__main__":
     absltest.main()

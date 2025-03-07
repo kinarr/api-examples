@@ -19,9 +19,11 @@ media = pathlib.Path(__file__).parents[1] / "third_party"
 
 
 class UnitTests(absltest.TestCase):
+
     def test_tokens_context_window(self):
         # [START tokens_context_window]
         from google import genai
+
         client = genai.Client()
         model_info = client.models.get(model="gemini-2.0-flash")
         print(f"{model_info.input_token_limit=}")
@@ -32,6 +34,7 @@ class UnitTests(absltest.TestCase):
     def test_tokens_text_only(self):
         # [START tokens_text_only]
         from google import genai
+
         client = genai.Client()
         prompt = "The quick brown fox jumps over the lazy dog."
 
@@ -55,17 +58,24 @@ class UnitTests(absltest.TestCase):
         # [START tokens_chat]
         from google import genai
         from google.genai import types
+
         client = genai.Client()
 
         chat = client.chats.create(
             model="gemini-2.0-flash",
             history=[
-                types.Content(role="user", parts=[types.Part(text="Hi my name is Bob")]),
-                types.Content(role="model", parts=[types.Part(text="Hi Bob!")])
-            ]
+                types.Content(
+                    role="user", parts=[types.Part(text="Hi my name is Bob")]
+                ),
+                types.Content(role="model", parts=[types.Part(text="Hi Bob!")]),
+            ],
         )
         # Count tokens for the chat history.
-        print(client.models.count_tokens(model="gemini-2.0-flash", contents=chat.get_history()))
+        print(
+            client.models.count_tokens(
+                model="gemini-2.0-flash", contents=chat.get_history()
+            )
+        )
         # ( e.g., total_tokens: 10 )
 
         response = chat.send_message(
@@ -84,12 +94,7 @@ class UnitTests(absltest.TestCase):
         )
         history = chat.get_history()
         history.append(extra)
-        print(
-            client.models.count_tokens(
-                model="gemini-2.0-flash", 
-                contents=history
-            )
-        )
+        print(client.models.count_tokens(model="gemini-2.0-flash", contents=history))
         # ( e.g., total_tokens: 56 )
         # [END tokens_chat]
 
@@ -97,12 +102,17 @@ class UnitTests(absltest.TestCase):
         # [START tokens_multimodal_image_inline]
         from google import genai
         import PIL.Image
+
         client = genai.Client()
         prompt = "Tell me about this image"
         your_image_file = PIL.Image.open(media / "organ.jpg")
 
         # Count tokens for combined text and inline image.
-        print(client.models.count_tokens(model="gemini-2.0-flash", contents=[prompt, your_image_file]))
+        print(
+            client.models.count_tokens(
+                model="gemini-2.0-flash", contents=[prompt, your_image_file]
+            )
+        )
         # ( e.g., total_tokens: 263 )
 
         response = client.models.generate_content(
@@ -115,11 +125,16 @@ class UnitTests(absltest.TestCase):
     def test_tokens_multimodal_image_file_api(self):
         # [START tokens_multimodal_image_file_api]
         from google import genai
+
         client = genai.Client()
         prompt = "Tell me about this image"
         your_image_file = client.files.upload(file=media / "organ.jpg")
 
-        print(client.models.count_tokens(model="gemini-2.0-flash", contents=[prompt, your_image_file]))
+        print(
+            client.models.count_tokens(
+                model="gemini-2.0-flash", contents=[prompt, your_image_file]
+            )
+        )
         # ( e.g., total_tokens: 263 )
 
         response = client.models.generate_content(
@@ -133,6 +148,7 @@ class UnitTests(absltest.TestCase):
         # [START tokens_multimodal_video_audio_file_api]
         from google import genai
         import time
+
         client = genai.Client()
         prompt = "Tell me about this video"
         your_file = client.files.upload(file=media / "Big_Buck_Bunny.mp4")
@@ -143,7 +159,11 @@ class UnitTests(absltest.TestCase):
             time.sleep(5)
             your_file = client.files.get(name=your_file.name)
 
-        print(client.models.count_tokens(model="gemini-2.0-flash", contents=[prompt, your_file]))
+        print(
+            client.models.count_tokens(
+                model="gemini-2.0-flash", contents=[prompt, your_file]
+            )
+        )
         # ( e.g., total_tokens: 300 )
 
         response = client.models.generate_content(
@@ -156,15 +176,18 @@ class UnitTests(absltest.TestCase):
     def test_tokens_multimodal_pdf_file_api(self):
         # [START tokens_multimodal_pdf_file_api]
         from google import genai
+
         client = genai.Client()
         sample_pdf = client.files.upload(file=media / "test.pdf")
         token_count = client.models.count_tokens(
-            model="gemini-2.0-flash", contents=["Give me a summary of this document.", sample_pdf]
+            model="gemini-2.0-flash",
+            contents=["Give me a summary of this document.", sample_pdf],
         )
         print(f"{token_count=}")
 
         response = client.models.generate_content(
-            model="gemini-2.0-flash", contents=["Give me a summary of this document.", sample_pdf]
+            model="gemini-2.0-flash",
+            contents=["Give me a summary of this document.", sample_pdf],
         )
         print(response.usage_metadata)
         # [END tokens_multimodal_pdf_file_api]
@@ -174,6 +197,7 @@ class UnitTests(absltest.TestCase):
         from google import genai
         from google.genai import types
         import time
+
         client = genai.Client()
         your_file = client.files.upload(file=media / "a11.txt")
 
@@ -183,7 +207,7 @@ class UnitTests(absltest.TestCase):
                 "contents": ["Here the Apollo 11 transcript:", your_file],
                 "system_instruction": None,
                 "tools": None,
-            }
+            },
         )
 
         # Create a prompt.
@@ -198,7 +222,7 @@ class UnitTests(absltest.TestCase):
             contents=prompt,
             config=types.GenerateContentConfig(
                 cached_content=cache.name,
-            )
+            ),
         )
         print(response.usage_metadata)
         # ( e.g., prompt_token_count: ..., cached_content_token_count: ..., candidates_token_count: ... )
@@ -210,15 +234,18 @@ class UnitTests(absltest.TestCase):
         # [START tokens_system_instruction]
         from google import genai
         from google.genai import types
+
         client = genai.Client()
         prompt = "The quick brown fox jumps over the lazy dog."
 
-        base_count = client.models.count_tokens(model="gemini-2.0-flash", contents=prompt)
+        base_count = client.models.count_tokens(
+            model="gemini-2.0-flash", contents=prompt
+        )
         print("total_tokens (no system instruction):", base_count)
         # ( e.g., total_tokens: 10 )
 
         # When using a system instruction, include it in the count tokens config.
-        # TODO: Uncomment once the API stops failing 
+        # TODO: Uncomment once the API stops failing
 
         # count_with_sys = client.models.count_tokens(
         #     model="gemini-2.0-flash",
@@ -234,92 +261,95 @@ class UnitTests(absltest.TestCase):
         # [START tokens_tools]
         from google import genai
         from google.genai import types
+
         client = genai.Client()
-        prompt = "I have 57 cats, each owns 44 mittens, how many mittens is that in total?"
+        prompt = (
+            "I have 57 cats, each owns 44 mittens, how many mittens is that in total?"
+        )
         print(client.models.count_tokens(model="gemini-2.0-flash", contents=prompt))
         # ( e.g., total_tokens: 22 )
 
         # Define the function declarations for the arithmetic operations
         add_function = types.FunctionDeclaration(
-            name='add',
-            description='Return the sum of a and b',
+            name="add",
+            description="Return the sum of a and b",
             parameters=types.Schema(
-                type='OBJECT',
+                type="OBJECT",
                 properties={
-                    'a': types.Schema(
-                        type='NUMBER',
-                        description='The first number',
+                    "a": types.Schema(
+                        type="NUMBER",
+                        description="The first number",
                     ),
-                    'b': types.Schema(
-                        type='NUMBER',
-                        description='The second number',
+                    "b": types.Schema(
+                        type="NUMBER",
+                        description="The second number",
                     ),
                 },
-                required=['a', 'b'],
+                required=["a", "b"],
             ),
         )
 
         subtract_function = types.FunctionDeclaration(
-            name='subtract',
-            description='Return the difference of a and b (a - b)',
+            name="subtract",
+            description="Return the difference of a and b (a - b)",
             parameters=types.Schema(
-                type='OBJECT',
+                type="OBJECT",
                 properties={
-                    'a': types.Schema(
-                        type='NUMBER',
-                        description='The first number',
+                    "a": types.Schema(
+                        type="NUMBER",
+                        description="The first number",
                     ),
-                    'b': types.Schema(
-                        type='NUMBER',
-                        description='The second number',
+                    "b": types.Schema(
+                        type="NUMBER",
+                        description="The second number",
                     ),
                 },
-                required=['a', 'b'],
+                required=["a", "b"],
             ),
         )
 
         multiply_function = types.FunctionDeclaration(
-            name='multiply',
-            description='Return the product of a and b',
+            name="multiply",
+            description="Return the product of a and b",
             parameters=types.Schema(
-                type='OBJECT',
+                type="OBJECT",
                 properties={
-                    'a': types.Schema(
-                        type='NUMBER',
-                        description='The first number',
+                    "a": types.Schema(
+                        type="NUMBER",
+                        description="The first number",
                     ),
-                    'b': types.Schema(
-                        type='NUMBER',
-                        description='The second number',
+                    "b": types.Schema(
+                        type="NUMBER",
+                        description="The second number",
                     ),
                 },
-                required=['a', 'b'],
+                required=["a", "b"],
             ),
         )
 
         divide_function = types.FunctionDeclaration(
-            name='divide',
-            description='Return the quotient of a divided by b',
+            name="divide",
+            description="Return the quotient of a divided by b",
             parameters=types.Schema(
-                type='OBJECT',
+                type="OBJECT",
                 properties={
-                    'a': types.Schema(
-                        type='NUMBER',
-                        description='The numerator',
+                    "a": types.Schema(
+                        type="NUMBER",
+                        description="The numerator",
                     ),
-                    'b': types.Schema(
-                        type='NUMBER',
-                        description='The denominator (must not be zero)',
+                    "b": types.Schema(
+                        type="NUMBER",
+                        description="The denominator (must not be zero)",
                     ),
                 },
-                required=['a', 'b'],
+                required=["a", "b"],
             ),
         )
         tools = [
-            types.Tool(function_declarations=[add_function]), 
-            types.Tool(function_declarations=[subtract_function]), 
-            types.Tool(function_declarations=[multiply_function]), 
-            types.Tool(function_declarations=[divide_function])
+            types.Tool(function_declarations=[add_function]),
+            types.Tool(function_declarations=[subtract_function]),
+            types.Tool(function_declarations=[multiply_function]),
+            types.Tool(function_declarations=[divide_function]),
         ]
 
         # Count tokens when tools are included. Tools increase the token count.

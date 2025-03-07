@@ -14,7 +14,9 @@
 # limitations under the License.
 from absl.testing import absltest
 
+
 class UnitTests(absltest.TestCase):
+
     def test_safety_settings(self):
         # [START safety_settings]
         from google import genai
@@ -32,11 +34,10 @@ class UnitTests(absltest.TestCase):
             config=types.GenerateContentConfig(
                 safety_settings=[
                     types.SafetySetting(
-                        category="HARM_CATEGORY_HARASSMENT",
-                        threshold="BLOCK_ONLY_HIGH"
+                        category="HARM_CATEGORY_HARASSMENT", threshold="BLOCK_ONLY_HIGH"
                     )
                 ]
-            )
+            ),
         )
         print(response.candidates[0].finish_reason)
         print(response.candidates[0].safety_ratings)
@@ -46,7 +47,7 @@ class UnitTests(absltest.TestCase):
         # [START safety_settings_multi]
         from google import genai
         from google.genai import types
-        
+
         client = genai.Client()
         unsafe_prompt = (
             "I support Martians Soccer Club and I think Jupiterians Football Club sucks! "
@@ -59,14 +60,13 @@ class UnitTests(absltest.TestCase):
                 safety_settings=[
                     types.SafetySetting(
                         category="HARM_CATEGORY_HATE_SPEECH",
-                        threshold="BLOCK_MEDIUM_AND_ABOVE"
+                        threshold="BLOCK_MEDIUM_AND_ABOVE",
                     ),
                     types.SafetySetting(
-                        category="HARM_CATEGORY_HARASSMENT",
-                        threshold="BLOCK_ONLY_HIGH"
-                    )
+                        category="HARM_CATEGORY_HARASSMENT", threshold="BLOCK_ONLY_HIGH"
+                    ),
                 ]
-            )
+            ),
         )
         try:
             print(response.text)

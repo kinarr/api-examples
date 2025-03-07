@@ -14,11 +14,14 @@
 # limitations under the License.
 from absl.testing import absltest
 
+
 class UnitTests(absltest.TestCase):
+
     def test_code_execution_basic(self):
         # [START code_execution_basic]
         from google import genai
         from google.genai import types
+
         client = genai.Client()
         response = client.models.generate_content(
             model="gemini-2.0-flash",
@@ -28,7 +31,7 @@ class UnitTests(absltest.TestCase):
             ),
             config=types.GenerateContentConfig(
                 tools=[types.Tool(code_execution=types.ToolCodeExecution())],
-            )
+            ),
         )
         # Each part may contain text, executable code, or an execution result.
         for part in response.candidates[0].content.parts:
@@ -71,7 +74,6 @@ class UnitTests(absltest.TestCase):
         # print(f'{primes=}')
         # print(f'{sum(primes)=}')
 
-
         # primes=[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229]
         # sum(primes)=5117
         # [END code_execution_basic_return]
@@ -80,6 +82,7 @@ class UnitTests(absltest.TestCase):
         # [START code_execution_request_override]
         from google import genai
         from google.genai import types
+
         client = genai.Client()
         response = client.models.generate_content(
             model="gemini-2.0-flash",
@@ -89,7 +92,7 @@ class UnitTests(absltest.TestCase):
             ),
             config=types.GenerateContentConfig(
                 tools=[types.Tool(code_execution=types.ToolCodeExecution())],
-            )
+            ),
         )
         print(response.executable_code)
         print(response.code_execution_result)
@@ -125,12 +128,13 @@ class UnitTests(absltest.TestCase):
         # [START code_execution_chat]
         from google import genai
         from google.genai import types
+
         client = genai.Client()
         chat = client.chats.create(
             model="gemini-2.0-flash",
             config=types.GenerateContentConfig(
                 tools=[types.Tool(code_execution=types.ToolCodeExecution())],
-            )
+            ),
         )
         # First, a simple chat message.
         response = chat.send_message(message='Can you print "Hello world!"?')
