@@ -14,7 +14,9 @@
 # limitations under the License.
 from absl.testing import absltest
 
+
 class UnitTests(absltest.TestCase):
+
     def test_system_instructions(self):
         # [START system_instruction]
         from google import genai
@@ -26,10 +28,11 @@ class UnitTests(absltest.TestCase):
             contents="Good morning! How are you?",
             config=types.GenerateContentConfig(
                 system_instruction="You are a cat. Your name is Neko."
-            )
+            ),
         )
         print(response.text)
         # [END system_instruction]
+
 
 if __name__ == "__main__":
     absltest.main()

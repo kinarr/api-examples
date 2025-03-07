@@ -17,7 +17,9 @@ import pathlib
 
 media = pathlib.Path(__file__).parents[1] / "third_party"
 
+
 class UnitTests(absltest.TestCase):
+
     def test_files_create_text(self):
         # [START files_create_text]
         from google import genai
@@ -28,7 +30,7 @@ class UnitTests(absltest.TestCase):
 
         result = client.models.generate_content(
             model="gemini-2.0-flash",
-            contents=[myfile, "\n\n", "Can you add a few more lines to this poem?"]
+            contents=[myfile, "\n\n", "Can you add a few more lines to this poem?"],
         )
         print(f"{result.text=}")
         # [END files_create_text]
@@ -43,7 +45,11 @@ class UnitTests(absltest.TestCase):
 
         result = client.models.generate_content(
             model="gemini-2.0-flash",
-            contents=[myfile, "\n\n", "Can you tell me about the instruments in this photo?"]
+            contents=[
+                myfile,
+                "\n\n",
+                "Can you tell me about the instruments in this photo?",
+            ],
         )
         print(f"{result.text=}")
         # [END files_create_image]
@@ -57,8 +63,7 @@ class UnitTests(absltest.TestCase):
         print(f"{myfile=}")
 
         result = client.models.generate_content(
-            model="gemini-2.0-flash",
-            contents=[myfile, "Describe this audio clip"]
+            model="gemini-2.0-flash", contents=[myfile, "Describe this audio clip"]
         )
         print(f"{result.text=}")
         # [END files_create_audio]
@@ -80,8 +85,7 @@ class UnitTests(absltest.TestCase):
             myfile = client.files.get(name=myfile.name)
 
         result = client.models.generate_content(
-            model="gemini-2.0-flash",
-            contents=[myfile, "Describe this video clip"]
+            model="gemini-2.0-flash", contents=[myfile, "Describe this video clip"]
         )
         print(f"{result.text=}")
         # [END files_create_video]
@@ -94,7 +98,7 @@ class UnitTests(absltest.TestCase):
         sample_pdf = client.files.upload(file=media / "test.pdf")
         response = client.models.generate_content(
             model="gemini-2.0-flash",
-            contents=["Give me a summary of this pdf file.", sample_pdf]
+            contents=["Give me a summary of this pdf file.", sample_pdf],
         )
         print(response.text)
         # [END files_create_pdf]
@@ -108,12 +112,11 @@ class UnitTests(absltest.TestCase):
         fpath = media / "test.pdf"
         with open(fpath, "rb") as f:
             sample_pdf = client.files.upload(
-                file=f,
-                config=types.UploadFileConfig(mime_type="application/pdf")
+                file=f, config=types.UploadFileConfig(mime_type="application/pdf")
             )
         response = client.models.generate_content(
             model="gemini-2.0-flash",
-            contents=["Give me a summary of this pdf file.", sample_pdf]
+            contents=["Give me a summary of this pdf file.", sample_pdf],
         )
         print(response.text)
         # [END files_create_io]
@@ -152,13 +155,13 @@ class UnitTests(absltest.TestCase):
 
         try:
             result = client.models.generate_content(
-                model="gemini-2.0-flash",
-                contents=[myfile, "Describe this file."]
+                model="gemini-2.0-flash", contents=[myfile, "Describe this file."]
             )
             print(result)
         except genai.errors.ClientError:
             pass
         # [END files_delete]
+
 
 if __name__ == "__main__":
     absltest.main()

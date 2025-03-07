@@ -14,7 +14,9 @@
 # limitations under the License.
 from absl.testing import absltest
 
+
 class UnitTests(absltest.TestCase):
+
     def test_function_calling(self):
         # [START function_calling]
         from google import genai
@@ -41,15 +43,14 @@ class UnitTests(absltest.TestCase):
         # Create a chat session; function calling (via tools) is enabled in the config.
         chat = client.chats.create(
             model="gemini-2.0-flash",
-            config=types.GenerateContentConfig(
-                tools=[add, subtract, multiply, divide]
-            )
+            config=types.GenerateContentConfig(tools=[add, subtract, multiply, divide]),
         )
         response = chat.send_message(
             message="I have 57 cats, each owns 44 mittens, how many mittens is that in total?"
         )
         print(response.text)
         # [END function_calling]
+
 
 if __name__ == "__main__":
     absltest.main()

@@ -19,6 +19,7 @@ media = pathlib.Path(__file__).parents[1] / "third_party"
 
 
 class UnitTests(absltest.TestCase):
+
     def test_json_controlled_generation(self):
         # [START json_controlled_generation]
         from google import genai
@@ -34,9 +35,8 @@ class UnitTests(absltest.TestCase):
             model="gemini-2.0-flash",
             contents="List a few popular cookie recipes.",
             config=types.GenerateContentConfig(
-                response_mime_type="application/json",
-                response_schema=list[Recipe]
-            )
+                response_mime_type="application/json", response_schema=list[Recipe]
+            ),
         )
         print(result)
         # [END json_controlled_generation]
@@ -53,8 +53,7 @@ class UnitTests(absltest.TestCase):
             "Return: list[Recipe]"
         )
         result = client.models.generate_content(
-            model="gemini-2.0-flash",
-            contents=prompt
+            model="gemini-2.0-flash", contents=prompt
         )
         print(result)
         # [END json_no_schema]
@@ -78,9 +77,8 @@ class UnitTests(absltest.TestCase):
             model="gemini-2.0-flash",
             contents=["What kind of instrument is this:", organ],
             config=types.GenerateContentConfig(
-                response_mime_type="application/json",
-                response_schema=Choice
-            )
+                response_mime_type="application/json", response_schema=Choice
+            ),
         )
         print(result)  # Expected output: "Keyboard" (or another appropriate enum value)
         # [END json_enum]
@@ -109,11 +107,12 @@ class UnitTests(absltest.TestCase):
             model="gemini-2.0-flash",
             contents="List about 10 cookie recipes, grade them based on popularity",
             config=types.GenerateContentConfig(
-                response_mime_type="application/json",
-                response_schema=list[Recipe]
-            )
+                response_mime_type="application/json", response_schema=list[Recipe]
+            ),
         )
-        print(result)  # Expected output: a JSON-parsed list with recipe names and grades (e.g., "a+")
+        print(
+            result
+        )  # Expected output: a JSON-parsed list with recipe names and grades (e.g., "a+")
         # [END enum_in_json]
 
     def test_json_enum_raw(self):
@@ -131,8 +130,8 @@ class UnitTests(absltest.TestCase):
                 response_schema={
                     "type": "STRING",
                     "enum": ["Percussion", "String", "Woodwind", "Brass", "Keyboard"],
-                }
-            )
+                },
+            ),
         )
         print(result)  # Expected output: "Keyboard"
         # [END json_enum_raw]
@@ -156,9 +155,8 @@ class UnitTests(absltest.TestCase):
             model="gemini-2.0-flash",
             contents=["What kind of instrument is this:", organ],
             config=types.GenerateContentConfig(
-                response_mime_type="text/x.enum",
-                response_schema=Choice
-            )
+                response_mime_type="text/x.enum", response_schema=Choice
+            ),
         )
         print(result)  # Expected output: "Keyboard"
         # [END x_enum]
@@ -178,8 +176,8 @@ class UnitTests(absltest.TestCase):
                 response_schema={
                     "type": "STRING",
                     "enum": ["Percussion", "String", "Woodwind", "Brass", "Keyboard"],
-                }
-            )
+                },
+            ),
         )
         print(result)  # Expected output: "Keyboard"
         # [END x_enum_raw]

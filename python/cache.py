@@ -19,6 +19,7 @@ media = pathlib.Path(__file__).parents[1] / "third_party"
 
 
 class UnitTests(absltest.TestCase):
+
     def test_cache_create(self):
         # [START cache_create]
         from google import genai
@@ -32,17 +33,15 @@ class UnitTests(absltest.TestCase):
             model=model_name,
             config=types.CreateCachedContentConfig(
                 contents=[document],
-                system_instruction="You are an expert analyzing transcripts."
-            )
+                system_instruction="You are an expert analyzing transcripts.",
+            ),
         )
         print(cache)
 
         response = client.models.generate_content(
             model=model_name,
             contents="Please summarize this transcript",
-            config=types.GenerateContentConfig(
-                cached_content=cache.name
-            )
+            config=types.GenerateContentConfig(cached_content=cache.name),
         )
         print(response.text)
         # [END cache_create]
@@ -61,8 +60,8 @@ class UnitTests(absltest.TestCase):
             model=model_name,
             config=types.CreateCachedContentConfig(
                 contents=[document],
-                system_instruction="You are an expert analyzing transcripts."
-            )
+                system_instruction="You are an expert analyzing transcripts.",
+            ),
         )
         cache_name = cache.name  # Save the name for later
 
@@ -71,9 +70,7 @@ class UnitTests(absltest.TestCase):
         response = client.models.generate_content(
             model=model_name,
             contents="Find a lighthearted moment from this transcript",
-            config=types.GenerateContentConfig(
-                cached_content=cache.name
-            )
+            config=types.GenerateContentConfig(cached_content=cache.name),
         )
         print(response.text)
         # [END cache_create_from_name]
@@ -91,9 +88,7 @@ class UnitTests(absltest.TestCase):
         # Create a chat session with the given system instruction.
         chat = client.chats.create(
             model=model_name,
-            config=types.GenerateContentConfig(
-                system_instruction=system_instruction
-            )
+            config=types.GenerateContentConfig(system_instruction=system_instruction),
         )
         document = client.files.upload(file=media / "a11.txt")
 
@@ -110,16 +105,14 @@ class UnitTests(absltest.TestCase):
         cache = client.caches.create(
             model=model_name,
             config={
-                'contents': chat.get_history(),
-                'system_instruction': system_instruction
-            }
+                "contents": chat.get_history(),
+                "system_instruction": system_instruction,
+            },
         )
         # Continue the conversation using the cached content.
         chat = client.chats.create(
             model=model_name,
-            config=types.GenerateContentConfig(
-                cached_content=cache.name
-            )
+            config=types.GenerateContentConfig(cached_content=cache.name),
         )
         response = chat.send_message(
             message="I didn't understand that last part, could you explain it in simpler language?"
@@ -139,9 +132,9 @@ class UnitTests(absltest.TestCase):
         cache = client.caches.create(
             model=model_name,
             config={
-                'contents': [document],
-                'system_instruction': "You are an expert analyzing transcripts.",
-            }
+                "contents": [document],
+                "system_instruction": "You are an expert analyzing transcripts.",
+            },
         )
         client.caches.delete(name=cache.name)
         # [END cache_delete]
@@ -157,9 +150,9 @@ class UnitTests(absltest.TestCase):
         cache = client.caches.create(
             model=model_name,
             config={
-                'contents': [document],
-                'system_instruction': "You are an expert analyzing transcripts.",
-            }
+                "contents": [document],
+                "system_instruction": "You are an expert analyzing transcripts.",
+            },
         )
         print(client.caches.get(name=cache.name))
         # [END cache_get]
@@ -176,9 +169,9 @@ class UnitTests(absltest.TestCase):
         cache = client.caches.create(
             model=model_name,
             config={
-                'contents': [document],
-                'system_instruction': "You are an expert analyzing transcripts.",
-            }
+                "contents": [document],
+                "system_instruction": "You are an expert analyzing transcripts.",
+            },
         )
         print("My caches:")
         for c in client.caches.list():
@@ -199,31 +192,31 @@ class UnitTests(absltest.TestCase):
         cache = client.caches.create(
             model=model_name,
             config={
-                'contents': [document],
-                'system_instruction': "You are an expert analyzing transcripts.",
-            }
+                "contents": [document],
+                "system_instruction": "You are an expert analyzing transcripts.",
+            },
         )
 
         # Update the cache's time-to-live (ttl)
         ttl = f"{int(datetime.timedelta(hours=2).total_seconds())}s"
         client.caches.update(
-            name=cache.name,
-            config=types.UpdateCachedContentConfig(
-                ttl=ttl
-            )
+            name=cache.name, config=types.UpdateCachedContentConfig(ttl=ttl)
         )
         print(f"After update:\n {cache}")
 
         # Alternatively, update the expire_time directly
         # Update the expire_time directly in valid RFC 3339 format (UTC with a "Z" suffix)
         expire_time = (
-            datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(minutes=15)
-        ).isoformat().replace('+00:00', 'Z')
+            (
+                datetime.datetime.now(datetime.timezone.utc)
+                + datetime.timedelta(minutes=15)
+            )
+            .isoformat()
+            .replace("+00:00", "Z")
+        )
         client.caches.update(
             name=cache.name,
-            config=types.UpdateCachedContentConfig(
-                expire_time=expire_time
-            )
+            config=types.UpdateCachedContentConfig(expire_time=expire_time),
         )
         # [END cache_update]
         client.caches.delete(name=cache.name)

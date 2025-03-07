@@ -14,17 +14,20 @@
 # limitations under the License.
 from absl.testing import absltest
 
+
 class UnitTests(absltest.TestCase):
+
     def test_embed_content(self):
         # [START embed_content]
         from google import genai
         from google.genai import types
+
         client = genai.Client()
         text = "Hello World!"
         result = client.models.embed_content(
             model="text-embedding-004",
             contents=text,
-            config=types.EmbedContentConfig(output_dimensionality=10)
+            config=types.EmbedContentConfig(output_dimensionality=10),
         )
         print(result.embeddings)
         # [END embed_content]
@@ -33,6 +36,7 @@ class UnitTests(absltest.TestCase):
         # [START batch_embed_contents]
         from google import genai
         from google.genai import types
+
         client = genai.Client()
         texts = [
             "What is the meaning of life?",
@@ -42,7 +46,7 @@ class UnitTests(absltest.TestCase):
         result = client.models.embed_content(
             model="text-embedding-004",
             contents=texts,
-            config=types.EmbedContentConfig(output_dimensionality=10)
+            config=types.EmbedContentConfig(output_dimensionality=10),
         )
         print(result.embeddings)
         # [END batch_embed_contents]
