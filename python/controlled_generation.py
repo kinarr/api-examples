@@ -110,9 +110,8 @@ class UnitTests(absltest.TestCase):
                 response_mime_type="application/json", response_schema=list[Recipe]
             ),
         )
-        print(
-            result
-        )  # Expected output: a JSON-parsed list with recipe names and grades (e.g., "a+")
+        # Expected output: a JSON-parsed list with recipe names and grades (e.g., "a+")
+        print(result)
         # [END enum_in_json]
 
     def test_json_enum_raw(self):
