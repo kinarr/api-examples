@@ -5,8 +5,15 @@ This directory contains examples of working with the Gemini API using the
 
 ## Install dependencies
 
-    pip install absl-py google-genai Pillow
+    pip install absl-py google-genai Pillow pyink
 
 ## Run a test file
 
     python <filename>.py
+
+## Format code
+
+We use [pyink](https://pypi.org/project/pyink/) for code formatting. To format
+the all the files in this directory, run:
+
+    pyink .
