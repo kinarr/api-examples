@@ -14,6 +14,6 @@ This directory contains examples of working with the Gemini API using the
 ## Format code
 
 We use [pyink](https://pypi.org/project/pyink/) for code formatting. To format
-the all the files in this directory, run:
+the files in this directory, run:
 
     pyink .

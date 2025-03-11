@@ -25,8 +25,7 @@ def test_text_gen_text_only_prompt(self):
     # [END text_gen_text_only_prompt]
 ```
 
-The API reference can then be configured to show the code between the region
-tags.
+The API reference can be configured to show the code between the region tags.
 
 If you're contributing, please make sure that the code within region tags
 follows best practices for example code: clear, complete, and concise.
