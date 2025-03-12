@@ -25,7 +25,7 @@ export async function textGenTextOnlyPrompt() {
   const ai = new GoogleGenAI({apiKey: GEMINI_API_KEY});
 
   const response = await ai.models.generateContent({
-    model: 'gemini-2.0-flash-001',
+    model: 'gemini-2.0-flash',
     contents: 'Write a story about a magic backpack.',
   });
   console.log(response.text);
