@@ -1,5 +1,5 @@
 {
-  "name": "javascript",
+  "name": "gemini-api-javascript-examples",
   "version": "1.0.0",
   "main": "",
   "scripts": {
@@ -7,7 +7,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "description": "",
   "type": "module",
   "dependencies": {
