@@ -10,5 +10,3 @@ This directory contains examples of working with the Gemini API using the
 For example:
 
     node text_generation.test.js
-
-    
