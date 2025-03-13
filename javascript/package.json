@@ -1,0 +1,16 @@
+{
+  "name": "gemini-api-javascript-examples",
+  "version": "1.0.0",
+  "main": "",
+  "scripts": {
+    "test": ""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "description": "",
+  "type": "module",
+  "dependencies": {
+    "@google/genai": "^0.3.1"
+  }
+}
