@@ -20,6 +20,7 @@ import {test, describe} from 'node:test';
 import {
   codeExecutionBasic,
   codeExecutionRequestOverride,
+  codeExecutionChat,
 } from './code_execution.js';
 
 describe('code_execution', () => {
@@ -32,6 +33,13 @@ describe('code_execution', () => {
 
   test('codeExecutionRequestOverride', async () => {
     const result = await codeExecutionRequestOverride();
+    // Check that the response contains non-empty results.
+    assert.ok(result.executableCode.length > 0);
+    assert.ok(result.codeExecutionResult.length > 0);
+  });
+
+  test('codeExecutionChat', async () => {
+    const result = await codeExecutionChat();
     // Check that the response contains non-empty results.
     assert.ok(result.executableCode.length > 0);
     assert.ok(result.codeExecutionResult.length > 0);
