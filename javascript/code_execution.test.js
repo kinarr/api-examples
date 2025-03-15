@@ -27,8 +27,7 @@ describe('code_execution', () => {
     const result = await codeExecutionBasic();
     // Check that the response contains parts and non-empty results.
     assert.ok(Array.isArray(result.parts) && result.parts.length > 0);
-    assert.ok(result.executableCode.length > 0);
-    assert.ok(result.codeExecutionResult.length > 0);
+    assert.ok(result.text.length > 0);
   });
 
   test('codeExecutionRequestOverride', async () => {

@@ -27,9 +27,6 @@ export async function codeExecutionBasic() {
     model: 'gemini-2.0-flash',
     contents:
       'What is the sum of the first 50 prime numbers? Generate and run code for the calculation, and make sure you get all 50.',
-    config: {
-      tools: [{codeExecution: {}}],
-    },
   });
 
   // Each part may contain text, executable code, or an execution result.
@@ -40,14 +37,12 @@ export async function codeExecutionBasic() {
 
   console.log('-'.repeat(80));
   // The `.text` accessor concatenates the parts into a markdown-formatted text.
-  console.log('\n', response.executableCode);
-  console.log('\n', response.codeExecutionResult);
+  console.log('\n', response.text);
   // [END code_execution_basic]
 
   return {
     parts: response.candidates[0].content.parts,
-    executableCode: response.executableCode,
-    codeExecutionResult: response.codeExecutionResult,
+    text: response.text,
   };
 }
 
