@@ -33,8 +33,8 @@ export async function jsonControlledGeneration() {
     model: 'gemini-2.0-flash',
     contents: 'List a few popular cookie recipes.',
     config: {
-      response_mime_type: 'application/json',
-      response_schema: {
+      responseMimeType: 'application/json',
+      responseSchema: {
         type: 'array',
         items: {
           type: 'object',
