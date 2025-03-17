@@ -37,16 +37,16 @@ export async function jsonControlledGeneration() {
     model: "gemini-2.0-flash",
     contents: "List a few popular cookie recipes.",
     config: {
-      response_mime_type: "application/json",
-      response_schema: {
+      responseMimeType: "application/json",
+      responseSchema: {
         type: "array",
         items: {
           type: "object",
           properties: {
-            recipe_name: { type: "string" },
+            recipeName: { type: "string" },
             ingredients: { type: "array", items: { type: "string" } },
           },
-          required: ["recipe_name", "ingredients"],
+          required: ["recipeName", "ingredients"],
         },
       },
     },
@@ -64,7 +64,7 @@ export async function jsonNoSchema() {
   const prompt =
     "List a few popular cookie recipes in JSON format.\n\n" +
     "Use this JSON schema:\n\n" +
-    "Recipe = {'recipe_name': str, 'ingredients': list[str]}\n" +
+    "Recipe = {'recipeName': str, 'ingredients': list[str]}\n" +
     "Return: list[Recipe]";
   const response = await ai.models.generateContent({
     model: "gemini-2.0-flash",
@@ -119,10 +119,10 @@ export async function enumInJson() {
         items: {
           type: "object",
           properties: {
-            recipe_name: { type: "string" },
+            recipeName: { type: "string" },
             grade: { type: "string", enum: ["a+", "a", "b", "c", "d", "f"] },
           },
-          required: ["recipe_name", "grade"],
+          required: ["recipeName", "grade"],
         },
       },
     },
