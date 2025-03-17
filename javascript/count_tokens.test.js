@@ -77,7 +77,8 @@ describe('count_tokens', () => {
   test('tokensSystemInstruction', async () => {
     const result = await tokensSystemInstruction();
     assert.ok(result.responseTokenCount > 0);
-    assert.ok(result.sysInstResponseTokenCount > 0);
+    // Uncomment if the API gets support for systemInstruction in count_tokens.
+    // assert.ok(result.sysInstResponseTokenCount > 0);
   });
 
   test('tokensTools', async () => {

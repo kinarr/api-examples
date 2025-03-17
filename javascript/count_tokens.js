@@ -288,7 +288,7 @@ export async function tokensCachedContent() {
   const generateResponse = await ai.models.generateContent({
     model: 'gemini-1.5-flash-001',
     contents: prompt,
-    config: {cached_content: cache.name},
+    config: {cachedContent: cache.name},
   });
   console.log(generateResponse.usageMetadata);
 
@@ -300,6 +300,7 @@ export async function tokensCachedContent() {
   };
 }
 
+// Error: systemInstruction parameter is not supported in Gemini API.
 export async function tokensSystemInstruction() {
   // [START tokens_system_instruction]
   // Make sure to include the following import:
@@ -315,19 +316,23 @@ export async function tokensSystemInstruction() {
     countTokensResponse.totalTokens,
   );
 
+  // Uncomment if the API gets support for systemInstruction in count_tokens.
+  /*
   const countTokensWithSysInstResponse = await ai.models.countTokens({
     model: 'gemini-2.0-flash',
     contents: prompt,
-    config: {system_instruction: 'You are a cat. Your name is Neko.'},
+    config: {systemInstruction: 'You are a cat. Your name is Neko.'},
   });
   console.log(
     'total_tokens (with system instruction):',
     countTokensWithSysInstResponse.totalTokens,
   );
+  */
   // [START tokens_system_instruction]
   return {
     responseTokenCount: countTokensResponse.totalTokens,
-    sysInstResponseTokenCount: countTokensWithSysInstResponse.totalTokens,
+    // Uncomment if the API gets support for systemInstruction in count_tokens.
+    // sysInstResponseTokenCount: countTokensWithSysInstResponse.totalTokens,
   };
 }
 
