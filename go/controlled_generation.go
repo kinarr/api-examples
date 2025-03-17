@@ -118,7 +118,7 @@ func JsonEnum() (*genai.GenerateContentResponse, error) {
 	}
 
 	// Open the file.
-	file, err := os.Open(filepath.Join(getMedia(), "third_party", "organ.jpg"))
+	file, err := os.Open(filepath.Join(getMedia(), "organ.jpg"))
 	if err != nil {
 		log.Fatal("Error opening file:", err)
 	}
@@ -215,7 +215,7 @@ func JsonEnumRaw() (*genai.GenerateContentResponse, error) {
 	}
 
 	// Open the file.
-	file, err := os.Open(filepath.Join(getMedia(), "third_party", "organ.jpg"))
+	file, err := os.Open(filepath.Join(getMedia(), "organ.jpg"))
 	if err != nil {
 		log.Fatal("Error opening file:", err)
 	}
@@ -267,7 +267,7 @@ func XEnum() (*genai.GenerateContentResponse, error) {
 	}
 
 	// Open the file.
-	file, err := os.Open(filepath.Join(getMedia(), "third_party", "organ.jpg"))
+	file, err := os.Open(filepath.Join(getMedia(), "organ.jpg"))
 	if err != nil {
 		log.Fatal("Error opening file:", err)
 	}
@@ -319,7 +319,7 @@ func XEnumRaw() (*genai.GenerateContentResponse, error) {
 	}
 
 	// Open the file.
-	file, err := os.Open(filepath.Join(getMedia(), "third_party", "organ.jpg"))
+	file, err := os.Open(filepath.Join(getMedia(), "organ.jpg"))
 	if err != nil {
 		log.Fatal("Error opening file:", err)
 	}
