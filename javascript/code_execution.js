@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-import {GoogleGenAI} from '@google/genai';
+import { GoogleGenAI } from "@google/genai";
 
 export async function codeExecutionBasic() {
   // [START code_execution_basic]
   // Make sure to include the following import:
   // import {GoogleGenAI} from '@google/genai';
-  const ai = new GoogleGenAI({apiKey: process.env.GEMINI_API_KEY});
+  const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
   const response = await ai.models.generateContent({
-    model: 'gemini-2.0-pro-exp-02-05',
+    model: "gemini-2.0-pro-exp-02-05",
     contents: `Write and execute code that calculates the sum of the first 50 prime numbers.
                Ensure that only the executable code and its resulting output are generated.`,
   });
@@ -32,12 +32,12 @@ export async function codeExecutionBasic() {
   // Each part may contain text, executable code, or an execution result.
   for (const part of response.candidates[0].content.parts) {
     console.log(part);
-    console.log('\n');
+    console.log("\n");
   }
 
-  console.log('-'.repeat(80));
+  console.log("-".repeat(80));
   // The `.text` accessor concatenates the parts into a markdown-formatted text.
-  console.log('\n', response.text);
+  console.log("\n", response.text);
   // [END code_execution_basic]
 
   // [START code_execution_basic_return]
@@ -67,10 +67,9 @@ export async function codeExecutionBasic() {
   //     '5117\n' +
   //     '```\n'
   // }
-  
-  
+
   // --------------------------------------------------------------------------------
-  
+
   // ```python
   // def is_prime(n):
   //     if n <= 1:
@@ -79,7 +78,7 @@ export async function codeExecutionBasic() {
   //         if n % i == 0:
   //             return False
   //     return True
-  
+
   // sum_of_primes = 0
   // count = 0
   // num = 2
@@ -88,10 +87,10 @@ export async function codeExecutionBasic() {
   //         sum_of_primes += num
   //         count += 1
   //     num += 1
-  
+
   // print(sum_of_primes)
   // ```
-  
+
   // ```output
   // 5117
   // ```
@@ -107,19 +106,19 @@ export async function codeExecutionRequestOverride() {
   // [START code_execution_request_override]
   // Make sure to include the following import:
   // import {GoogleGenAI} from '@google/genai';
-  const ai = new GoogleGenAI({apiKey: process.env.GEMINI_API_KEY});
+  const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
   const response = await ai.models.generateContent({
-    model: 'gemini-2.0-flash',
+    model: "gemini-2.0-flash",
     contents:
-      'What is the sum of the first 50 prime numbers? Generate and run code for the calculation, and make sure you get all 50.',
+      "What is the sum of the first 50 prime numbers? Generate and run code for the calculation, and make sure you get all 50.",
     config: {
-      tools: [{codeExecution: {}}],
+      tools: [{ codeExecution: {} }],
     },
   });
 
-  console.log('\n', response.executableCode);
-  console.log('\n', response.codeExecutionResult);
+  console.log("\n", response.executableCode);
+  console.log("\n", response.codeExecutionResult);
   // [END code_execution_request_override]
 
   // [START code_execution_request_override_return]
@@ -148,7 +147,6 @@ export async function codeExecutionRequestOverride() {
   // print(f'{primes=}')
   // print(f'{sum(primes)=}')
 
-
   // primes=[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229]
   // sum(primes)=5117
   // [END code_execution_request_override_return]
@@ -163,21 +161,22 @@ export async function codeExecutionChat() {
   // [START code_execution_chat]
   // Make sure to include the following import:
   // import {GoogleGenAI} from '@google/genai';
-  const ai = new GoogleGenAI({apiKey: process.env.GEMINI_API_KEY});
+  const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
   const chat = ai.chats.create({
-    model: 'gemini-2.0-flash'
+    model: "gemini-2.0-flash",
   });
 
   const response = await chat.sendMessage({
-    message: 'What is the sum of the first 50 prime numbers? Generate and run code for the calculation, and make sure you get all 50.',
+    message:
+      "What is the sum of the first 50 prime numbers? Generate and run code for the calculation, and make sure you get all 50.",
     config: {
-      tools: [{codeExecution: {}}],
+      tools: [{ codeExecution: {} }],
     },
   });
 
-  console.log('\n', response.executableCode);
-  console.log('\n', response.codeExecutionResult);
+  console.log("\n", response.executableCode);
+  console.log("\n", response.codeExecutionResult);
   // [END code_execution_chat]
 
   // [START code_execution_chat_return]
@@ -205,7 +204,6 @@ export async function codeExecutionChat() {
 
   // print(f'{primes=}')
   // print(f'{sum(primes)=}')
-
 
   // primes=[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229]
   // sum(primes)=5117
