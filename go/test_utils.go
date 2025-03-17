@@ -20,7 +20,7 @@ func getMedia() string {
 	// file is the full path to this source file.
 	dir := filepath.Dir(file)
 	// Adjust the relative path as needed.
-	return filepath.Join(dir, "third_party", "..")
+	return filepath.Join(dir, "..", "third_party")
 }
 
 // Helping for printing the response.
