@@ -149,12 +149,6 @@ func JsonEnum() (*genai.GenerateContentResponse, error) {
 	return response, err
 }
 
-// RecipeWithGrade defines a recipe with a grade.
-// type RecipeWithGrade struct {
-// 	RecipeName string `json:"recipe_name"`
-// 	Grade      string `json:"grade"`
-// }
-
 func EnumInJson() (*genai.GenerateContentResponse, error) {
 	// [START enum_in_json]
 	ctx := context.Background()
