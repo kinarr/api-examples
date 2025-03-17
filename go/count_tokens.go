@@ -281,6 +281,7 @@ func TokensCachedContent() error {
 	if err != nil {
 		log.Fatal(err)
 	}
+	// Returns `nil` for some reason
 	fmt.Println(string(usageMetadata))
 	_, err = client.Caches.Delete(ctx, cache.Name, &genai.DeleteCachedContentConfig{})
 	// [END tokens_cached_content]
