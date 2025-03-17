@@ -168,7 +168,6 @@ func CacheDelete() error {
 	}
 
 	parts := []*genai.Part{
-		{Text: "Please summarize this transcript"},
 		{InlineData: &genai.Blob{Data: data, MIMEType: "text/plain"}},
 	}
 	contents := []*genai.Content{
@@ -217,7 +216,6 @@ func CacheGet() error {
 	}
 
 	parts := []*genai.Part{
-		{Text: "Please summarize this transcript"},
 		{InlineData: &genai.Blob{Data: data, MIMEType: "text/plain"}},
 	}
 	contents := []*genai.Content{
@@ -270,7 +268,6 @@ func CacheList() error {
 	}
 
 	parts := []*genai.Part{
-		{Text: "Please summarize this transcript"},
 		{InlineData: &genai.Blob{Data: data, MIMEType: "text/plain"}},
 	}
 	contents := []*genai.Content{
@@ -339,7 +336,6 @@ func CacheUpdate() error {
 	}
 
 	parts := []*genai.Part{
-		{Text: "Please summarize this transcript"},
 		{InlineData: &genai.Blob{Data: data, MIMEType: "text/plain"}},
 	}
 	contents := []*genai.Content{
