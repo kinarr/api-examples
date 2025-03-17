@@ -152,9 +152,9 @@ func FunctionCalling() error {
 	// Use GenerateContent to send the final result.
 	finalResponse, err := client.Models.GenerateContent(ctx, modelName, resultContents, &genai.GenerateContentConfig{})
 	if err != nil {
-		return err
+		log.Fatal(err)
 	}
 
 	printResponse(finalResponse)
-	return nil
+	return err
 }
