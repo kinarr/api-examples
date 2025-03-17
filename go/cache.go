@@ -26,7 +26,7 @@ func CacheCreate() (*genai.GenerateContentResponse, error) {
 	modelName := "gemini-1.5-flash-001"
 
 	// Open the file.
-	file, err := os.Open(filepath.Join(getMedia(), "third_party", "a11.txt"))
+	file, err := os.Open(filepath.Join(getMedia(), "a11.txt"))
 	if err != nil {
 		log.Fatal("Error opening file:", err)
 	}
@@ -89,7 +89,7 @@ func CacheCreateFromName() (*genai.GenerateContentResponse, error) {
 
 	modelName := "gemini-1.5-flash-001"
 	// Open the file.
-	file, err := os.Open(filepath.Join(getMedia(), "third_party", "a11.txt"))
+	file, err := os.Open(filepath.Join(getMedia(), "a11.txt"))
 	if err != nil {
 		log.Fatal("Error opening file:", err)
 	}
@@ -155,7 +155,7 @@ func CacheDelete() error {
 
 	modelName := "gemini-1.5-flash-001"
 	// Open the file.
-	file, err := os.Open(filepath.Join(getMedia(), "third_party", "a11.txt"))
+	file, err := os.Open(filepath.Join(getMedia(), "a11.txt"))
 	if err != nil {
 		log.Fatal("Error opening file:", err)
 	}
@@ -204,7 +204,7 @@ func CacheGet() error {
 
 	modelName := "gemini-1.5-flash-001"
 	// Open the file.
-	file, err := os.Open(filepath.Join(getMedia(), "third_party", "a11.txt"))
+	file, err := os.Open(filepath.Join(getMedia(), "a11.txt"))
 	if err != nil {
 		log.Fatal("Error opening file:", err)
 	}
@@ -257,7 +257,7 @@ func CacheList() error {
 	// For demonstration, create a cache first.
 	modelName := "gemini-1.5-flash-001"
 	// Open the file.
-	file, err := os.Open(filepath.Join(getMedia(), "third_party", "a11.txt"))
+	file, err := os.Open(filepath.Join(getMedia(), "a11.txt"))
 	if err != nil {
 		log.Fatal("Error opening file:", err)
 	}
@@ -326,7 +326,7 @@ func CacheUpdate() error {
 
 	modelName := "gemini-1.5-flash-001"
 	// Open the file.
-	file, err := os.Open(filepath.Join(getMedia(), "third_party", "a11.txt"))
+	file, err := os.Open(filepath.Join(getMedia(), "a11.txt"))
 	if err != nil {
 		log.Fatal("Error opening file:", err)
 	}
