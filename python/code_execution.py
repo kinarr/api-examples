@@ -26,7 +26,7 @@ class UnitTests(absltest.TestCase):
         response = client.models.generate_content(
             model="gemini-2.0-pro-exp-02-05",
             contents=(
-                "Using Python, write and execute code that calculates the sum of the first 50 prime numbers. "
+                "Write and execute code that calculates the sum of the first 50 prime numbers. "
                 "Ensure that only the executable code and its resulting output are generated."
             ),
         )
