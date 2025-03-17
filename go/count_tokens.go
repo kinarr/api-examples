@@ -66,7 +66,7 @@ func TokensTextOnly() error {
 	}
 	fmt.Println(string(usageMetadata))
 	// [END tokens_text_only]
-	return nil
+	return err
 }
 
 func TokensMultimodalImageInline() error {
@@ -117,7 +117,7 @@ func TokensMultimodalImageInline() error {
 	}
 	fmt.Println(string(usageMetadata))
 	// [END tokens_multimodal_image_inline]
-	return nil
+	return err
 }
 
 func TokensMultimodalVideoAudioInline() error {
@@ -167,7 +167,7 @@ func TokensMultimodalVideoAudioInline() error {
 	}
 	fmt.Println(string(usageMetadata))
 	// [END tokens_multimodal_video_audio_file_api]
-	return nil
+	return err
 }
 
 func TokensMultimodalPdfInline() error {
@@ -217,7 +217,7 @@ func TokensMultimodalPdfInline() error {
 	}
 	fmt.Println(string(usageMetadata))
 	// [END tokens_multimodal_pdf_file_api]
-	return nil
+	return err
 }
 
 func TokensCachedContent() error {
