@@ -70,7 +70,7 @@ func CodeExecutionBasic() (*genai.GenerateContentResponse, error) {
 	// ```
 	// [END code_execution_basic_return]
 
-	return response, nil
+	return response, err
 }
 
 func CodeExecutionRequestOverride() (*genai.GenerateContentResponse, error) {
@@ -142,5 +142,5 @@ Generate and run code for the calculation, and make sure you get all 50.`,
 
 	// [END code_execution_request_override_return]
 
-	return response, nil
+	return response, err
 }
