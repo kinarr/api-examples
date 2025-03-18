@@ -17,7 +17,7 @@ from absl.testing import absltest
 
 class UnitTests(absltest.TestCase):
 
-    def test_system_instructions(self):
+    def test_system_instruction(self):
         # [START system_instruction]
         from google import genai
         from google.genai import types
