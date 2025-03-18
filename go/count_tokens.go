@@ -121,7 +121,7 @@ func TokensMultimodalImageInline() error {
 }
 
 func TokensMultimodalVideoAudioInline() error {
-	// [START tokens_multimodal_video_audio_file_api]
+	// [START tokens_multimodal_video_audio_inline]
 	ctx := context.Background()
 	client, err := genai.NewClient(ctx, &genai.ClientConfig{
 		APIKey:  os.Getenv("GEMINI_API_KEY"),
@@ -166,12 +166,12 @@ func TokensMultimodalVideoAudioInline() error {
 		log.Fatal(err)
 	}
 	fmt.Println(string(usageMetadata))
-	// [END tokens_multimodal_video_audio_file_api]
+	// [END tokens_multimodal_video_audio_inline]
 	return err
 }
 
 func TokensMultimodalPdfInline() error {
-	// [START tokens_multimodal_pdf_file_api]
+	// [START tokens_multimodal_pdf_inline]
 	ctx := context.Background()
 	client, err := genai.NewClient(ctx, &genai.ClientConfig{
 		APIKey:  os.Getenv("GEMINI_API_KEY"),
@@ -216,7 +216,7 @@ func TokensMultimodalPdfInline() error {
 		log.Fatal(err)
 	}
 	fmt.Println(string(usageMetadata))
-	// [END tokens_multimodal_pdf_file_api]
+	// [END tokens_multimodal_pdf_inline]
 	return err
 }
 
