@@ -34,7 +34,7 @@ export async function embedContent() {
 }
 
 export async function batchEmbedContents() {
-  // [START batch_embed_content]
+  // [START batch_embed_contents]
   // Make sure to include the following import:
   // import {GoogleGenAI} from '@google/genai';
   const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
@@ -49,6 +49,6 @@ export async function batchEmbedContents() {
     config: { outputDimensionality: 10 },
   });
   console.log(result.embeddings);
-  // [END batch_embed_content]
+  // [END batch_embed_contents]
   return result.embeddings;
 }
