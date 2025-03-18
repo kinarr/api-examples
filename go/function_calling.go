@@ -59,6 +59,7 @@ func createArithmeticToolDeclaration(name, description string) *genai.FunctionDe
 }
 
 func FunctionCalling() error {
+	// [START function_calling]
 	ctx := context.Background()
 	client, err := genai.NewClient(ctx, &genai.ClientConfig{
 		APIKey:  os.Getenv("GEMINI_API_KEY"),
@@ -156,5 +157,6 @@ func FunctionCalling() error {
 	}
 
 	printResponse(finalResponse)
+	// [END function_calling]
 	return err
 }
