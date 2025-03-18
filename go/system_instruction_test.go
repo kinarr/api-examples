@@ -4,9 +4,9 @@ import (
 	"testing"
 )
 
-func TestSystemInstructions(t *testing.T) {
-	err := SystemInstructions()
+func TestSystemInstruction(t *testing.T) {
+	err := SystemInstruction()
 	if err != nil {
-		t.Errorf("SystemInstructions returned an error.")
+		t.Errorf("SystemInstruction returned an error.")
 	}
 }

@@ -9,7 +9,7 @@ import (
 )
 
 // SystemInstructions demonstrates setting a system instruction using a *genai.Content in the generation config.
-func SystemInstructions() error {
+func SystemInstruction() error {
 	// [START system_instruction]
 	ctx := context.Background()
 	client, err := genai.NewClient(ctx, &genai.ClientConfig{
