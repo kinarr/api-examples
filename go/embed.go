@@ -10,7 +10,7 @@ import (
 	"google.golang.org/genai"
 )
 
-func EmbedContentBasic() error {
+func EmbedContent() error {
 	// [START embed_content]
 	ctx := context.Background()
 	client, err := genai.NewClient(ctx, &genai.ClientConfig{

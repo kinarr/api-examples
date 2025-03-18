@@ -17,7 +17,7 @@
 
 import { GoogleGenAI, FunctionCallingConfigMode } from "@google/genai";
 
-export async function functionCallingTest() {
+export async function functionCalling() {
   // [START function_calling]
   // Make sure to include the following import:
   // import {GoogleGenAI} from '@google/genai';

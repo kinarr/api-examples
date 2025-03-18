@@ -4,10 +4,10 @@ import (
 	"testing"
 )
 
-func TestEmbedContentBasic(t *testing.T) {
-	err := EmbedContentBasic()
+func TestEmbedContent(t *testing.T) {
+	err := EmbedContent()
 	if err != nil {
-		t.Errorf("EmbedContentBasic returned an error.")
+		t.Errorf("EmbedContent returned an error.")
 	}
 }
 

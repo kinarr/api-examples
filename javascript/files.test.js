@@ -27,7 +27,7 @@ import {
   filesGet,
 } from "./files.js";
 
-describe("Files API Tests", () => {
+describe("files", () => {
   test("filesCreateText", async () => {
     const text = await filesCreateText();
     assert.ok(text && text.length > 0);
