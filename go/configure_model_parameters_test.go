@@ -4,9 +4,9 @@ import (
 	"testing"
 )
 
-func TestConfigureModel(t *testing.T) {
-	_, err := ConfigureModel()
+func TestConfigureModelParameters(t *testing.T) {
+	_, err := ConfigureModelParameters()
 	if err != nil {
-		t.Errorf("ConfigureModel returned an error.")
+		t.Errorf("ConfigureModelParameters returned an error.")
 	}
 }
