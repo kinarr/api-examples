@@ -11,6 +11,7 @@ import (
 )
 
 func SafetySettings() error {
+	// [START safety_settings]
 	ctx := context.Background()
 	client, err := genai.NewClient(ctx, &genai.ClientConfig{
 		APIKey:  os.Getenv("GEMINI_API_KEY"),
@@ -50,10 +51,12 @@ func SafetySettings() error {
 	} else {
 		fmt.Println("No candidate returned.")
 	}
+	// [END safety_settings]
 	return err
 }
 
 func SafetySettingsMulti() error {
+	// [START safety_settings_multi]
 	ctx := context.Background()
 	client, err := genai.NewClient(ctx, &genai.ClientConfig{
 		APIKey:  os.Getenv("GEMINI_API_KEY"),
@@ -105,5 +108,6 @@ func SafetySettingsMulti() error {
 	} else {
 		fmt.Println("No candidate returned.")
 	}
+	// [END safety_settings_multi]
 	return err
 }

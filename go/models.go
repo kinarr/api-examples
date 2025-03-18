@@ -10,6 +10,7 @@ import (
 )
 
 func ModelsList() error {
+	// [START models_list]
 	ctx := context.Background()
 	client, err := genai.NewClient(ctx, &genai.ClientConfig{
 		APIKey:  os.Getenv("GEMINI_API_KEY"),
@@ -45,10 +46,12 @@ func ModelsList() error {
 			}
 		}
 	}
+	// [END models_list]
 	return err
 }
 
 func ModelsGet() error {
+	// [START models_get]
 	ctx := context.Background()
 	client, err := genai.NewClient(ctx, &genai.ClientConfig{
 		APIKey:  os.Getenv("GEMINI_API_KEY"),
@@ -64,5 +67,6 @@ func ModelsGet() error {
 	}
 
 	fmt.Println(modelInfo)
+	// [END models_get]
 	return err
 }
