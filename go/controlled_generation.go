@@ -66,9 +66,9 @@ func JsonNoSchema() (*genai.GenerateContentResponse, error) {
 		log.Fatal(err)
 	}
 	prompt := "List a few popular cookie recipes in JSON format.\n\n" +
-		"Use this JSON schema:\n\n" +
-		"Recipe = {'recipe_name': str, 'ingredients': list[str]}\n" +
-		"Return: list[Recipe]"
+			  "Use this JSON schema:\n\n" +
+			  "Recipe = {'recipe_name': str, 'ingredients': list[str]}\n" +
+		      "Return: list[Recipe]"
 	response, err := client.Models.GenerateContent(ctx, "gemini-2.0-flash", genai.Text(prompt), nil)
 	if err != nil {
 		log.Fatal(err)
@@ -222,7 +222,7 @@ func JsonEnumRaw() (*genai.GenerateContentResponse, error) {
 	}
 
 	parts := []*genai.Part{
-		{Text: "Please summarize this transcript"},
+		{Text: "What kind of instrument is this:"},
 		{InlineData: &genai.Blob{Data: data, MIMEType: "image/jpeg"}},
 	}
 	contents := []*genai.Content{
@@ -252,12 +252,32 @@ func XEnum() (*genai.GenerateContentResponse, error) {
 		log.Fatal(err)
 	}
 
+	// Choice is a custom type representing a musical instrument category.
+	type Choice string
+
+	const (
+		Percussion Choice = "Percussion"
+		String     Choice = "String"
+		Woodwind   Choice = "Woodwind"
+		Brass      Choice = "Brass"
+		Keyboard   Choice = "Keyboard"
+	)
+
+	// Define a schema restricting the response to the allowed Choice enum values.
+	schema := &genai.Schema{
+		Type: genai.TypeString,
+		Enum: []string{
+			string(Percussion),
+			string(String),
+			string(Woodwind),
+			string(Brass),
+			string(Keyboard),
+		},
+	}
+
 	config := &genai.GenerateContentConfig{
 		ResponseMIMEType: "text/x.enum",
-		ResponseSchema: &genai.Schema{
-			Type: genai.TypeString,
-			Enum: []string{"Percussion", "String", "Woodwind", "Brass", "Keyboard"},
-		},
+		ResponseSchema:   schema,
 	}
 
 	// Open the file.
@@ -274,7 +294,7 @@ func XEnum() (*genai.GenerateContentResponse, error) {
 	}
 
 	parts := []*genai.Part{
-		{Text: "Please summarize this transcript"},
+		{Text: "What kind of instrument is this:"},
 		{InlineData: &genai.Blob{Data: data, MIMEType: "image/jpeg"}},
 	}
 	contents := []*genai.Content{
@@ -326,7 +346,7 @@ func XEnumRaw() (*genai.GenerateContentResponse, error) {
 	}
 
 	parts := []*genai.Part{
-		{Text: "Please summarize this transcript"},
+		{Text: "What kind of instrument is this:"},
 		{InlineData: &genai.Blob{Data: data, MIMEType: "image/jpeg"}},
 	}
 	contents := []*genai.Content{
