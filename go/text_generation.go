@@ -95,11 +95,7 @@ func TextGenMultimodalOneImagePrompt() (*genai.GenerateContentResponse, error) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	text, err := response.Text()
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println(text)
+	printResponse(response)
 	// [END text_gen_multimodal_one_image_prompt]
 	return response, err
 }
@@ -193,11 +189,7 @@ func TextGenMultimodalMultiImagePrompt() (*genai.GenerateContentResponse, error)
 	if err != nil {
 		log.Fatal(err)
 	}
-	text, err := response.Text()
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println(text)
+	printResponse(response)
 	// [END text_gen_multimodal_multi_image_prompt]
 	return response, err
 }
@@ -289,11 +281,7 @@ func TextGenMultimodalAudio() (*genai.GenerateContentResponse, error) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	text, err := response.Text()
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println(text)
+	printResponse(response)
 	// [END text_gen_multimodal_audio]
 	return response, err
 }
@@ -372,11 +360,7 @@ func TextGenMultimodalVideoPrompt() (*genai.GenerateContentResponse, error) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	text, err := response.Text()
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Printf("response.text=%s\n", text)
+	printResponse(response)
 	// [END text_gen_multimodal_video_prompt]
 	return response, err
 }
@@ -454,11 +438,7 @@ func TextGenMultimodalPdf() (*genai.GenerateContentResponse, error) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	text, err := response.Text()
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Printf("response.text=%s\n", text)
+	printResponse(response)
 	// [END text_gen_multimodal_pdf]
 	return response, err
 }
