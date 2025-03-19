@@ -8,7 +8,7 @@ import (
 	"google.golang.org/genai"
 )
 
-func ConfigureModel() (*genai.GenerateContentResponse, error) {
+func ConfigureModelParameters() (*genai.GenerateContentResponse, error) {
 	// [START configure_model_parameters]
 	ctx := context.Background()
 	client, err := genai.NewClient(ctx, &genai.ClientConfig{

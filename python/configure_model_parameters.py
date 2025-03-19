@@ -17,7 +17,7 @@ from absl.testing import absltest
 
 class UnitTests(absltest.TestCase):
 
-    def test_configure_model(self):
+    def test_configure_model_parameters(self):
         # [START configure_model_parameters]
         from google import genai
         from google.genai import types

@@ -20,8 +20,8 @@ import { test, describe } from "node:test";
 import { functionCallingTest } from "./function_calling.js";
 
 describe("function_calling", () => {
-  test("functionCallingTest", async () => {
-    const response = await functionCallingTest();
+  test("functionCalling", async () => {
+    const response = await functionCalling();
     // Check that the response text is non-empty.
     assert.ok(response.text.length > 0);
   });
