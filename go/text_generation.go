@@ -72,14 +72,14 @@ func TextGenMultimodalOneImagePrompt() (*genai.GenerateContentResponse, error) {
 		log.Fatal(err)
 	}
 	imagePath := filepath.Join(getMedia(), "organ.jpg")
-	f, err := os.Open(imagePath)
+	file, err := os.Open(imagePath)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error opening file:", err)
 	}
-	data, err := io.ReadAll(f)
-	f.Close()
+	defer file.Close()
+	data, err := io.ReadAll(file)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error reading file:", err)
 	}
 	imagePart := &genai.Part{
 		InlineData: &genai.Blob{
@@ -111,14 +111,14 @@ func TextGenMultimodalOneImagePromptStreaming() error {
 		log.Fatal(err)
 	}
 	imagePath := filepath.Join(getMedia(), "organ.jpg")
-	f, err := os.Open(imagePath)
+	file, err := os.Open(imagePath)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error opening file:", err)
 	}
-	data, err := io.ReadAll(f)
-	f.Close()
+	defer file.Close()
+	data, err := io.ReadAll(file)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error reading file:", err)
 	}
 	imagePart := &genai.Part{
 		InlineData: &genai.Blob{
@@ -157,27 +157,27 @@ func TextGenMultimodalMultiImagePrompt() (*genai.GenerateContentResponse, error)
 	}
 	organPath := filepath.Join(getMedia(), "organ.jpg")
 	cajunPath := filepath.Join(getMedia(), "Cajun_instruments.jpg")
-	fOrg, err := os.Open(organPath)
+	organFile, err := os.Open(organPath)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error opening file:", err)
 	}
-	dataOrg, err := io.ReadAll(fOrg)
-	fOrg.Close()
+	defer organFile.Close()
+	organData, err := io.ReadAll(organFile)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error reading file:", err)
 	}
-	fCajun, err := os.Open(cajunPath)
+	cajunFile, err := os.Open(cajunPath)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error opening file:", err)
 	}
-	dataCajun, err := io.ReadAll(fCajun)
-	fCajun.Close()
+	defer cajunFile.Close()
+	cajunData, err := io.ReadAll(cajunFile)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error reading file:", err)
 	}
 	parts := []*genai.Part{
-		{InlineData: &genai.Blob{Data: dataOrg, MIMEType: "image/jpeg"}},
-		{InlineData: &genai.Blob{Data: dataCajun, MIMEType: "image/jpeg"}},
+		{InlineData: &genai.Blob{Data: organData, MIMEType: "image/jpeg"}},
+		{InlineData: &genai.Blob{Data: cajunData, MIMEType: "image/jpeg"}},
 	}
 	contents := []*genai.Content{
 		genai.NewUserContentFromText(
@@ -206,27 +206,27 @@ func TextGenMultimodalMultiImagePromptStreaming() error {
 	}
 	organPath := filepath.Join(getMedia(), "organ.jpg")
 	cajunPath := filepath.Join(getMedia(), "Cajun_instruments.jpg")
-	fOrg, err := os.Open(organPath)
+	organFile, err := os.Open(organPath)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error opening file:", err)
 	}
-	dataOrg, err := io.ReadAll(fOrg)
-	fOrg.Close()
+	defer organFile.Close()
+	organData, err := io.ReadAll(organFile)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error reading file:", err)
 	}
-	fCajun, err := os.Open(cajunPath)
+	cajunFile, err := os.Open(cajunPath)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error opening file:", err)
 	}
-	dataCajun, err := io.ReadAll(fCajun)
-	fCajun.Close()
+	defer cajunFile.Close()
+	cajunData, err := io.ReadAll(cajunFile)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error reading file:", err)
 	}
 	parts := []*genai.Part{
-		{InlineData: &genai.Blob{Data: dataOrg, MIMEType: "image/jpeg"}},
-		{InlineData: &genai.Blob{Data: dataCajun, MIMEType: "image/jpeg"}},
+		{InlineData: &genai.Blob{Data: organData, MIMEType: "image/jpeg"}},
+		{InlineData: &genai.Blob{Data: cajunData, MIMEType: "image/jpeg"}},
 	}
 	contents := []*genai.Content{
 		genai.NewUserContentFromText(
@@ -261,14 +261,14 @@ func TextGenMultimodalAudio() (*genai.GenerateContentResponse, error) {
 	}
 	prompt := "Give me a summary of this audio file."
 	audioPath := filepath.Join(getMedia(), "sample.mp3")
-	f, err := os.Open(audioPath)
+	file, err := os.Open(audioPath)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error opening file:", err)
 	}
-	data, err := io.ReadAll(f)
-	f.Close()
+	defer file.Close()
+	data, err := io.ReadAll(file)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error reading file:", err)
 	}
 	audioPart := &genai.Part{
 		InlineData: &genai.Blob{Data: data, MIMEType: "audio/mpeg"},
@@ -298,14 +298,14 @@ func TextGenMultimodalAudioStreaming() error {
 	}
 	prompt := "Give me a summary of this audio file."
 	audioPath := filepath.Join(getMedia(), "sample.mp3")
-	f, err := os.Open(audioPath)
+	file, err := os.Open(audioPath)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error opening file:", err)
 	}
-	data, err := io.ReadAll(f)
-	f.Close()
+	defer file.Close()
+	data, err := io.ReadAll(file)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error reading file:", err)
 	}
 	audioPart := &genai.Part{
 		InlineData: &genai.Blob{Data: data, MIMEType: "audio/mpeg"},
@@ -340,14 +340,14 @@ func TextGenMultimodalVideoPrompt() (*genai.GenerateContentResponse, error) {
 		log.Fatal(err)
 	}
 	videoPath := filepath.Join(getMedia(), "Big_Buck_Bunny.mp4")
-	f, err := os.Open(videoPath)
+	file, err := os.Open(videoPath)
 	if err != nil {
-		log.Fatal(fmt.Errorf("error opening file: %v", err))
+		log.Fatal("Error opening file:", err)
 	}
-	defer f.Close()
-	data, err := io.ReadAll(f)
+	defer file.Close()
+	data, err := io.ReadAll(file)
 	if err != nil {
-		log.Fatal(fmt.Errorf("error reading file: %v", err))
+		log.Fatal("Error reading file:", err)
 	}
 	parts := []*genai.Part{
 		{Text: "Describe this video clip"},
@@ -376,14 +376,14 @@ func TextGenMultimodalVideoPromptStreaming() error {
 		log.Fatal(err)
 	}
 	videoPath := filepath.Join(getMedia(), "Big_Buck_Bunny.mp4")
-	f, err := os.Open(videoPath)
+	file, err := os.Open(videoPath)
 	if err != nil {
-		log.Fatal(fmt.Errorf("error opening file: %v", err))
+		log.Fatal("Error opening file:", err)
 	}
-	defer f.Close()
-	data, err := io.ReadAll(f)
+	defer file.Close()
+	data, err := io.ReadAll(file)
 	if err != nil {
-		log.Fatal(fmt.Errorf("error reading file: %v", err))
+		log.Fatal("Error reading file:", err)
 	}
 	parts := []*genai.Part{
 		{Text: "Describe this video clip"},
@@ -418,14 +418,14 @@ func TextGenMultimodalPdf() (*genai.GenerateContentResponse, error) {
 		log.Fatal(err)
 	}
 	pdfPath := filepath.Join(getMedia(), "test.pdf")
-	f, err := os.Open(pdfPath)
+	file, err := os.Open(pdfPath)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error opening file:", err)
 	}
-	data, err := io.ReadAll(f)
-	f.Close()
+	defer file.Close()
+	data, err := io.ReadAll(file)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error reading file:", err)
 	}
 	pdfPart := &genai.Part{
 		InlineData: &genai.Blob{Data: data, MIMEType: "application/pdf"},
@@ -454,14 +454,14 @@ func TextGenMultimodalPdfStreaming() error {
 		log.Fatal(err)
 	}
 	pdfPath := filepath.Join(getMedia(), "test.pdf")
-	f, err := os.Open(pdfPath)
+	file, err := os.Open(pdfPath)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error opening file:", err)
 	}
-	data, err := io.ReadAll(f)
-	f.Close()
+	defer file.Close()
+	data, err := io.ReadAll(file)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error reading file:", err)
 	}
 	pdfPart := &genai.Part{
 		InlineData: &genai.Blob{Data: data, MIMEType: "application/pdf"},
