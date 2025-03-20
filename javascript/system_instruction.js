@@ -17,12 +17,6 @@
 
 import { GoogleGenAI } from "@google/genai";
 
-/**
- * systemInstructionsTest sends a prompt with a system instruction configuration.
- * The system instruction tells the model: "You are a cat. Your name is Neko."
- *
- * @returns {Promise<string>} The generated text from the model.
- */
 export async function systemInstruction() {
   // [START system_instruction]
   // Make sure to include the following import:
