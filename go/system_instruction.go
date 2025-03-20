@@ -8,7 +8,6 @@ import (
 	"google.golang.org/genai"
 )
 
-// SystemInstructions demonstrates setting a system instruction using a *genai.Content in the generation config.
 func SystemInstruction() error {
 	// [START system_instruction]
 	ctx := context.Background()

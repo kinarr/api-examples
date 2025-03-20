@@ -26,7 +26,6 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Define common media directory path (was third_party)
 const media = path.join(__dirname, "..", "third_party");
 
 export async function chat() {
