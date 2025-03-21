@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.google.gemini;
+package com.example.gemini;
 
 import com.google.common.collect.ImmutableList;
 import com.google.genai.Client;
@@ -26,7 +26,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Base64;
 
-import static org.google.gemini.BuildConfig.media_path;
+import static com.example.gemini.BuildConfig.media_path;
 
 public class TextGenMultimodalOneImagePrompt {
     public static void main(String[] args) throws IOException, HttpException {

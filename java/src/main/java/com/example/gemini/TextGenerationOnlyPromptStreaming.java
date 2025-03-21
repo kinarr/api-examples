@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.google.gemini;
+package com.example.gemini;
 
 import com.google.genai.Client;
 import com.google.genai.ResponseStream;
