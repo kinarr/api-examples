@@ -22,7 +22,7 @@ import org.apache.http.HttpException;
 
 import java.io.IOException;
 
-public class TextGenerationOnlyPrompt {
+public class TextGenTextOnlyPrompt {
     public static void main(String[] args) throws IOException, HttpException {
         // [START text_gen_text_only_prompt]
         Client client = new Client();
