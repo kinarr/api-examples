@@ -14,3 +14,10 @@ For example:
 ## Format the code
 
     npm run format
+
+<!-- 
+[START update]
+// The Gen AI SDK for TypeScript and JavaScript is in preview.
+// Some features have not been implemented.
+[END update]
+ -->
