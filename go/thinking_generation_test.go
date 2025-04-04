@@ -42,7 +42,11 @@ func TestThinkingTextOnlyPrompt(t *testing.T) {
 	}
 	// This function returns string directly
 	text := resp.Text()
-	t.Logf("Text: %s", text)
+	if text == "" {
+		t.Error("ThinkingTextOnlyPrompt response text is empty")
+	} else {
+		t.Logf("Text: %s", text)
+	}
 	sleep(testDelay)
 }
 
@@ -81,7 +85,11 @@ func TestThinkingLogicPuzzle(t *testing.T) {
 	}
 	// This function returns string directly
 	text := resp.Text()
-	t.Logf("Text: %s", text)
+	if text == "" {
+		t.Error("ThinkingLogicPuzzle response text is empty")
+	} else {
+		t.Logf("Text: %s", text)
+	}
 	sleep(testDelay)
 }
 
@@ -98,7 +106,11 @@ func TestThinkingCodeExplanation(t *testing.T) {
 	}
 	// This function returns string directly
 	text := resp.Text()
-	t.Logf("Text: %s", text)
+	if text == "" {
+		t.Error("ThinkingCodeExplanation response text is empty")
+	} else {
+		t.Logf("Text: %s", text)
+	}
 	sleep(testDelay)
 }
 
@@ -115,7 +127,11 @@ func TestThinkingCreativeWritingConstraints(t *testing.T) {
 	}
 	// This function returns string directly
 	text := resp.Text()
-	t.Logf("Text: %s", text)
+	if text == "" {
+		t.Error("ThinkingCreativeWritingConstraints response text is empty")
+	} else {
+		t.Logf("Text: %s", text)
+	}
 	// Optional: Stricter check (might be flaky)
 	// if strings.Contains(strings.ToLower(text), "e") {
 	// 	t.Errorf("Constraint check failed: Result contains 'e'")
@@ -140,7 +156,11 @@ func TestThinkingWithSearchTool(t *testing.T) {
 	} else {
 		// This function returns string directly
 		text := resp.Text()
-		t.Logf("Text: %s", text)
+		if text == "" {
+			t.Error("ThinkingWithSearchTool response text is empty")
+		} else {
+			t.Logf("Text: %s", text)
+		}
 	}
 	// A more robust test could check resp.Candidates[0].GroundingMetadata != nil
 
@@ -181,7 +201,11 @@ func TestThinkingCodeExecution(t *testing.T) {
 	} else {
 		// This function returns string directly
 		text := resp.Text()
-		t.Logf("Text: %s", text)
+		if text == "" {
+			t.Error("ThinkingCodeExecution response text is empty")
+		} else {
+			t.Logf("Text: %s", text)
+		}
 	}
 
 	// More robust: Check if resp contains ExecutableCode or CodeExecutionResult parts
@@ -218,7 +242,11 @@ func TestThinkingStructuredOutputJson(t *testing.T) {
 
 	// This function returns string directly
 	responseText := resp.Text()
-	t.Logf("Text: %s", responseText)
+	if responseText == "" {
+		t.Error("ThinkingStructuredOutputJson response text is empty")
+	} else {
+		t.Logf("Text: %s", responseText)
+	}
 
 	// Try parsing the JSON in the test only if text extraction was successful
 	if responseText != "" {
