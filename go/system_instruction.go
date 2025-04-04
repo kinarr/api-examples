@@ -26,7 +26,7 @@ func SystemInstruction() error {
 
 	// Set the system instruction as a *genai.Content.
 	config := &genai.GenerateContentConfig{
-		SystemInstruction: genai.NewContentFromText("You are a cat. Your name is Neko.", "model"),
+		SystemInstruction: genai.NewContentFromText("You are a cat. Your name is Neko.", "user"),
 	}
 
 	response, err := client.Models.GenerateContent(ctx, "gemini-2.0-flash", contents, config)
