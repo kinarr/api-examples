@@ -24,9 +24,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class SystemInstructionTest {
     @Test
-    public void test_ContentGenSystemInstruction() {
-        String result = assertDoesNotThrow(SystemInstruction::ContentGenSystemInstruction,
-                "ContentGenSystemInstruction returned an error");
+    public void test_systemInstruction() {
+        String result = assertDoesNotThrow(SystemInstruction::systemInstruction,
+                "systemInstruction returned an error");
 
         assertNotNull(result, "Response should not be null");
         assertFalse(result.trim().isEmpty(), "Response should not be empty");

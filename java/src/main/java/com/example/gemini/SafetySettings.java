@@ -25,7 +25,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class SafetySettings {
-    public static GenerateContentResponse ContentGenSafetySettings() throws Exception {
+    public static GenerateContentResponse safetySettings() throws Exception {
         // [START safety_settings]
         Client client = new Client();
 
@@ -55,7 +55,7 @@ public class SafetySettings {
         return response;
     }
 
-    public static GenerateContentResponse SafetySettingsMulti() throws Exception {
+    public static GenerateContentResponse safetySettingsMulti() throws Exception {
         // [START safety_settings_multi]
         Client client = new Client();
 

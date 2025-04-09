@@ -25,9 +25,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SafetySettingsTest {
     @Test
-    public void test_ContentGenSafetySettings() {
-        GenerateContentResponse response = assertDoesNotThrow(SafetySettings::ContentGenSafetySettings,
-                "ContentGenSafetySettings returned an error");
+    public void test_safetySettings() {
+        GenerateContentResponse response = assertDoesNotThrow(SafetySettings::safetySettings,
+                "safetySettings returned an error");
 
         assertNotNull(response, "Response should not be null");
 
@@ -42,9 +42,9 @@ public class SafetySettingsTest {
     }
 
     @Test
-    public void test_SafetySettingsMulti() {
-        GenerateContentResponse response = assertDoesNotThrow(SafetySettings::SafetySettingsMulti,
-                "SafetySettingsMulti returned an error");
+    public void test_safetySettingsMulti() {
+        GenerateContentResponse response = assertDoesNotThrow(SafetySettings::safetySettingsMulti,
+                "safetySettingsMulti returned an error");
 
         assertNotNull(response, "Response should not be null");
 

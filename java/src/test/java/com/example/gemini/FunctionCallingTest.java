@@ -23,9 +23,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class FunctionCallingTest {
     @Test
-    public void test_ContentGenFunctionCalling() {
-        Double result = assertDoesNotThrow(FunctionCalling::ContentGenFunctionCalling,
-                "ContentGenFunctionCalling returned an error");
+    public void test_functionCalling() {
+        Double result = assertDoesNotThrow(FunctionCalling::functionCalling,
+                "functionCalling returned an error");
 
         assertNotNull(result, "Response should not be null");
     }

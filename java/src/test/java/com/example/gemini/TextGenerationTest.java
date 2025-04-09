@@ -25,108 +25,108 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class TextGenerationTest {
     @Test
-    public void test_TextGenTextOnlyPrompt() {
-        String result = assertDoesNotThrow(TextGeneration::TextGenTextOnlyPrompt,
-                "TextGenTextOnlyPrompt returned an error");
+    public void test_textGenTextOnlyPrompt() {
+        String result = assertDoesNotThrow(TextGeneration::textGenTextOnlyPrompt,
+                "textGenTextOnlyPrompt returned an error");
 
         assertNotNull(result, "Response should not be null");
         assertFalse(result.trim().isEmpty(), "Response should not be empty");
     }
 
     @Test
-    public void test_TextGenTextOnlyPromptStreaming() {
-        String result = assertDoesNotThrow(TextGeneration::TextGenTextOnlyPromptStreaming,
-                "TextGenTextOnlyPromptStreaming returned an error");
+    public void test_textGenTextOnlyPromptStreaming() {
+        String result = assertDoesNotThrow(TextGeneration::textGenTextOnlyPromptStreaming,
+                "textGenTextOnlyPromptStreaming returned an error");
 
         assertNotNull(result, "Response should not be null");
         assertFalse(result.trim().isEmpty(), "Response should not be empty");
     }
 
     @Test
-    public void test_TextGenMultimodalOneImagePrompt() {
-        String result = assertDoesNotThrow(TextGeneration::TextGenMultimodalOneImagePrompt,
-                "TextGenMultimodalOneImagePrompt returned an error");
+    public void test_textGenMultimodalOneImagePrompt() {
+        String result = assertDoesNotThrow(TextGeneration::textGenMultimodalOneImagePrompt,
+                "textGenMultimodalOneImagePrompt returned an error");
 
         assertNotNull(result, "Response should not be null");
         assertFalse(result.trim().isEmpty(), "Response should not be empty");
     }
 
     @Test
-    public void test_TextGenMultimodalOneImagePromptStreaming() {
-        String result = assertDoesNotThrow(TextGeneration::TextGenMultimodalOneImagePromptStreaming,
-                "TextGenMultimodalOneImagePromptStreaming returned an error");
+    public void test_textGenMultimodalOneImagePromptStreaming() {
+        String result = assertDoesNotThrow(TextGeneration::textGenMultimodalOneImagePromptStreaming,
+                "textGenMultimodalOneImagePromptStreaming returned an error");
 
         assertNotNull(result, "Response should not be null");
         assertFalse(result.trim().isEmpty(), "Response should not be empty");
     }
 
     @Test
-    public void test_TextGenMultimodalMultiImagePrompt() {
-        String result = assertDoesNotThrow(TextGeneration::TextGenMultimodalMultiImagePrompt,
-                "TextGenMultimodalMultiImagePrompt returned an error");
+    public void test_textGenMultimodalMultiImagePrompt() {
+        String result = assertDoesNotThrow(TextGeneration::textGenMultimodalMultiImagePrompt,
+                "textGenMultimodalMultiImagePrompt returned an error");
 
         assertNotNull(result, "Response should not be null");
         assertFalse(result.trim().isEmpty(), "Response should not be empty");
     }
 
     @Test
-    public void test_TextGenMultimodalMultiImagePromptStreaming() {
-        String result = assertDoesNotThrow(TextGeneration::TextGenMultimodalMultiImagePromptStreaming,
-                "TextGenMultimodalMultiImagePromptStreaming returned an error");
+    public void test_textGenMultimodalMultiImagePromptStreaming() {
+        String result = assertDoesNotThrow(TextGeneration::textGenMultimodalMultiImagePromptStreaming,
+                "textGenMultimodalMultiImagePromptStreaming returned an error");
 
         assertNotNull(result, "Response should not be null");
         assertFalse(result.trim().isEmpty(), "Response should not be empty");
     }
 
     @Test
-    public void test_TextGenMultimodalAudio() {
-        String result = assertDoesNotThrow(TextGeneration::TextGenMultimodalAudio,
-                "TextGenMultimodalAudio returned an error");
+    public void test_textGenMultimodalAudio() {
+        String result = assertDoesNotThrow(TextGeneration::textGenMultimodalAudio,
+                "textGenMultimodalAudio returned an error");
 
         assertNotNull(result, "Response should not be null");
         assertFalse(result.trim().isEmpty(), "Response should not be empty");
     }
 
     @Test
-    public void test_TextGenMultimodalAudioStreaming() {
-        String result = assertDoesNotThrow(TextGeneration::TextGenMultimodalAudioStreaming,
-                "TextGenMultimodalAudioStreaming returned an error");
+    public void test_textGenMultimodalAudioStreaming() {
+        String result = assertDoesNotThrow(TextGeneration::textGenMultimodalAudioStreaming,
+                "textGenMultimodalAudioStreaming returned an error");
 
         assertNotNull(result, "Response should not be null");
         assertFalse(result.trim().isEmpty(), "Response should not be empty");
     }
 
     @Test
-    public void test_TextGenMultimodalVideoPrompt() {
-        String result = assertDoesNotThrow(TextGeneration::TextGenMultimodalVideoPrompt,
-                "TextGenMultimodalVideoPrompt returned an error");
+    public void test_textGenMultimodalVideoPrompt() {
+        String result = assertDoesNotThrow(TextGeneration::textGenMultimodalVideoPrompt,
+                "textGenMultimodalVideoPrompt returned an error");
 
         assertNotNull(result, "Response should not be null");
         assertFalse(result.trim().isEmpty(), "Response should not be empty");
     }
 
     @Test
-    public void test_TextGenMultimodalVideoPromptStreaming() {
-        String result = assertDoesNotThrow(TextGeneration::TextGenMultimodalVideoPromptStreaming,
-                "TextGenMultimodalVideoPromptStreaming returned an error");
+    public void test_textGenMultimodalVideoPromptStreaming() {
+        String result = assertDoesNotThrow(TextGeneration::textGenMultimodalVideoPromptStreaming,
+                "textGenMultimodalVideoPromptStreaming returned an error");
 
         assertNotNull(result, "Response should not be null");
         assertFalse(result.trim().isEmpty(), "Response should not be empty");
     }
 
     @Test
-    public void test_TextGenMultimodalPdf() {
-        String result = assertDoesNotThrow(TextGeneration::TextGenMultimodalPdf,
-                "TextGenMultimodalPdf returned an error");
+    public void test_textGenMultimodalPdf() {
+        String result = assertDoesNotThrow(TextGeneration::textGenMultimodalPdf,
+                "textGenMultimodalPdf returned an error");
 
         assertNotNull(result, "Response should not be null");
         assertFalse(result.trim().isEmpty(), "Response should not be empty");
     }
 
     @Test
-    public void test_TextGenMultimodalPdfStreaming() {
-        String result = assertDoesNotThrow(TextGeneration::TextGenMultimodalPdfStreaming,
-                "TextGenMultimodalPdfStreaming returned an error");
+    public void test_textGenMultimodalPdfStreaming() {
+        String result = assertDoesNotThrow(TextGeneration::textGenMultimodalPdfStreaming,
+                "textGenMultimodalPdfStreaming returned an error");
 
         assertNotNull(result, "Response should not be null");
         assertFalse(result.trim().isEmpty(), "Response should not be empty");

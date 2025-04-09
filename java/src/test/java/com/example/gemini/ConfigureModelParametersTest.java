@@ -24,9 +24,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class ConfigureModelParametersTest {
     @Test
-    public void test_ContentGneConfigureModelParameters() {
-        String result = assertDoesNotThrow(ConfigureModelParameters::ContentGneConfigureModelParameters,
-                "ContentGneConfigureModelParameters returned an error");
+    public void test_configureModelParameters() {
+        String result = assertDoesNotThrow(ConfigureModelParameters::configureModelParameters,
+                "configureModelParameters returned an error");
 
         assertNotNull(result, "Response should not be null");
         assertFalse(result.trim().isEmpty(), "Response should not be empty");

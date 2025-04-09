@@ -25,7 +25,7 @@ import com.google.genai.types.Part;
 import org.jspecify.annotations.Nullable;
 
 public class SystemInstruction {
-    public static @Nullable String ContentGenSystemInstruction() throws Exception {
+    public static @Nullable String systemInstruction() throws Exception {
         // [START system_instruction]
         Client client = new Client();
 

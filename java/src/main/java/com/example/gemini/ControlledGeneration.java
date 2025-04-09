@@ -37,7 +37,7 @@ import java.util.Map;
 import static com.example.gemini.BuildConfig.media_path;
 
 public class ControlledGeneration {
-    public static @Nullable String JsonControlledGeneration() throws Exception {
+    public static @Nullable String jsonControlledGeneration() throws Exception {
         // [START json_controlled_generation]
         Client client = new Client();
 
@@ -77,7 +77,7 @@ public class ControlledGeneration {
         return response.text();
     }
 
-    public static @Nullable String JsonNoSchema() throws Exception {
+    public static @Nullable String jsonNoSchema() throws Exception {
         // [START json_no_schema]
         Client client = new Client();
 
@@ -104,7 +104,7 @@ public class ControlledGeneration {
         return response.text();
     }
 
-    public static @Nullable String JsonEnum() throws Exception {
+    public static @Nullable String jsonEnum() throws Exception {
         // [START json_enum]
         Client client = new Client();
 
@@ -143,7 +143,7 @@ public class ControlledGeneration {
         return response.text();
     }
 
-    public static @Nullable String EnumInJson() throws Exception {
+    public static @Nullable String enumInJson() throws Exception {
         // [START enum_in_json]
         Client client = new Client();
 
@@ -181,7 +181,7 @@ public class ControlledGeneration {
         return response.text();
     }
 
-    public static @Nullable String XEnum() throws Exception {
+    public static @Nullable String xEnum() throws Exception {
         // [START x_enum]
         Client client = new Client();
 

@@ -33,7 +33,7 @@ import static com.example.gemini.BuildConfig.media_path;
 
 @SuppressWarnings("resource")
 public class TextGeneration {
-    public static @Nullable String TextGenTextOnlyPrompt() throws Exception {
+    public static @Nullable String textGenTextOnlyPrompt() throws Exception {
         // [START text_gen_text_only_prompt]
         Client client = new Client();
 
@@ -48,7 +48,7 @@ public class TextGeneration {
         return response.text();
     }
 
-    public static String TextGenTextOnlyPromptStreaming() throws Exception {
+    public static String textGenTextOnlyPromptStreaming() throws Exception {
         // [START text_gen_text_only_prompt_streaming]
         Client client = new Client();
 
@@ -69,7 +69,7 @@ public class TextGeneration {
         return response.toString();
     }
 
-    public static @Nullable String TextGenMultimodalOneImagePrompt() throws Exception {
+    public static @Nullable String textGenMultimodalOneImagePrompt() throws Exception {
         // [START text_gen_multimodal_one_image_prompt]
         Client client = new Client();
 
@@ -91,7 +91,7 @@ public class TextGeneration {
         return response.text();
     }
 
-    public static String TextGenMultimodalOneImagePromptStreaming() throws Exception {
+    public static String textGenMultimodalOneImagePromptStreaming() throws Exception {
         // [START text_gen_multimodal_one_image_prompt_streaming]
         Client client = new Client();
 
@@ -123,7 +123,7 @@ public class TextGeneration {
         return response.toString();
     }
 
-    public static @Nullable String TextGenMultimodalMultiImagePrompt() throws Exception {
+    public static @Nullable String textGenMultimodalMultiImagePrompt() throws Exception {
         // [START text_gen_multimodal_multi_image_prompt]
         Client client = new Client();
 
@@ -152,7 +152,7 @@ public class TextGeneration {
         return response.text();
     }
 
-    public static String TextGenMultimodalMultiImagePromptStreaming() throws Exception {
+    public static String textGenMultimodalMultiImagePromptStreaming() throws Exception {
         // [START text_gen_multimodal_multi_image_prompt_streaming]
         Client client = new Client();
 
@@ -188,7 +188,7 @@ public class TextGeneration {
         return response.toString();
     }
 
-    public static @Nullable String TextGenMultimodalAudio() throws Exception {
+    public static @Nullable String textGenMultimodalAudio() throws Exception {
         // [START text_gen_multimodal_audio]
         Client client = new Client();
 
@@ -210,7 +210,7 @@ public class TextGeneration {
         return response.text();
     }
 
-    public static String TextGenMultimodalAudioStreaming() throws Exception {
+    public static String textGenMultimodalAudioStreaming() throws Exception {
         // [START text_gen_multimodal_audio_streaming]
         Client client = new Client();
 
@@ -239,7 +239,7 @@ public class TextGeneration {
         return response.toString();
     }
 
-    public static @Nullable String TextGenMultimodalVideoPrompt() throws Exception {
+    public static @Nullable String textGenMultimodalVideoPrompt() throws Exception {
         // [START text_gen_multimodal_video_prompt]
         Client client = new Client();
 
@@ -261,7 +261,7 @@ public class TextGeneration {
         return response.text();
     }
 
-    public static String TextGenMultimodalVideoPromptStreaming() throws Exception {
+    public static String textGenMultimodalVideoPromptStreaming() throws Exception {
         // [START text_gen_multimodal_video_prompt_streaming]
         Client client = new Client();
 
@@ -290,7 +290,7 @@ public class TextGeneration {
         return response.toString();
     }
 
-    public static @Nullable String TextGenMultimodalPdf() throws Exception {
+    public static @Nullable String textGenMultimodalPdf() throws Exception {
         // [START text_gen_multimodal_pdf]
         Client client = new Client();
 
@@ -312,7 +312,7 @@ public class TextGeneration {
         return response.text();
     }
 
-    public static String TextGenMultimodalPdfStreaming() throws Exception {
+    public static String textGenMultimodalPdfStreaming() throws Exception {
         // [START text_gen_multimodal_pdf_streaming]
         Client client = new Client();
 

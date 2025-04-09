@@ -29,9 +29,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class CodeExecutionTest {
     @Test
-    public void test_CodeExecutionBasic() {
-        GenerateContentResponse response = assertDoesNotThrow(CodeExecution::CodeExecutionBasic,
-                "CodeExecutionBasic returned an error");
+    public void test_codeExecutionBasic() {
+        GenerateContentResponse response = assertDoesNotThrow(CodeExecution::codeExecutionBasic,
+                "codeExecutionBasic returned an error");
 
         assertNotNull(response, "Response should not be null");
 
@@ -44,9 +44,9 @@ public class CodeExecutionTest {
     }
 
     @Test
-    public void test_CodeExecutionRequestOverride() {
-        GenerateContentResponse response = assertDoesNotThrow(CodeExecution::CodeExecutionRequestOverride,
-                "CodeExecutionRequestOverride returned an error");
+    public void test_codeExecutionRequestOverride() {
+        GenerateContentResponse response = assertDoesNotThrow(CodeExecution::codeExecutionRequestOverride,
+                "codeExecutionRequestOverride returned an error");
 
         assertNotNull(response, "Response should not be null");
 

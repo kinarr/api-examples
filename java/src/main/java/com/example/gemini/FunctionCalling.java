@@ -33,7 +33,7 @@ import java.util.Map;
 import java.util.function.BiFunction;
 
 public class FunctionCalling {
-    public static Double ContentGenFunctionCalling() throws Exception {
+    public static Double functionCalling() throws Exception {
         // [START function_calling]
         Client client = new Client();
 
