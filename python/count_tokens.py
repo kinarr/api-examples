@@ -154,11 +154,11 @@ class UnitTests(absltest.TestCase):
         your_file = client.files.upload(file=media / "Big_Buck_Bunny.mp4")
 
         # Poll until the video file is completely processed (state becomes ACTIVE).
-        while not myfile.state or myfile.state.name != "ACTIVE":
+        while not your_file.state or your_file.state.name != "ACTIVE":
             print("Processing video...")
-            print("File state:", myfile.state)
+            print("File state:", your_file.state)
             time.sleep(5)
-            myfile = client.files.get(name=myfile.name)
+            your_file = client.files.get(name=your_file.name)
 
         print(
             client.models.count_tokens(
