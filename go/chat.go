@@ -148,4 +148,3 @@ func ChatStreamingWithImages() error {
 
 	return nil
 }
-
