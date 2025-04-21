@@ -24,7 +24,7 @@ import org.jspecify.annotations.Nullable;
 import java.util.List;
 
 public class ConfigureModelParameters {
-    public static @Nullable String configureModelParameters() throws Exception {
+    public static @Nullable String configureModelParameters() {
         // [START configure_model_parameters]
         Client client = new Client();
 

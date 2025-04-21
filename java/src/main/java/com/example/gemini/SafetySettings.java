@@ -25,7 +25,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class SafetySettings {
-    public static GenerateContentResponse safetySettings() throws Exception {
+    public static GenerateContentResponse safetySettings() {
         // [START safety_settings]
         Client client = new Client();
 

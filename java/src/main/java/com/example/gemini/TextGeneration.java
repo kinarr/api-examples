@@ -16,10 +16,8 @@
 
 package com.example.gemini;
 
-import com.google.common.collect.ImmutableList;
 import com.google.genai.Client;
 import com.google.genai.ResponseStream;
-import com.google.genai.types.Blob;
 import com.google.genai.types.Content;
 import com.google.genai.types.GenerateContentResponse;
 import com.google.genai.types.Part;
@@ -27,13 +25,11 @@ import org.jspecify.annotations.Nullable;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Base64;
 
 import static com.example.gemini.BuildConfig.media_path;
 
-@SuppressWarnings("resource")
 public class TextGeneration {
-    public static @Nullable String textGenTextOnlyPrompt() throws Exception {
+    public static @Nullable String textGenTextOnlyPrompt() {
         // [START text_gen_text_only_prompt]
         Client client = new Client();
 
@@ -48,7 +44,7 @@ public class TextGeneration {
         return response.text();
     }
 
-    public static String textGenTextOnlyPromptStreaming() throws Exception {
+    public static String textGenTextOnlyPromptStreaming() {
         // [START text_gen_text_only_prompt_streaming]
         Client client = new Client();
 
@@ -75,14 +71,11 @@ public class TextGeneration {
 
         String path = media_path + "organ.jpg";
         byte[] imageData = Files.readAllBytes(Paths.get(path));
-        String base64Image = Base64.getEncoder().encodeToString(imageData);
-        Part imagePart = Part.builder()
-                .inlineData(Blob.builder().data(base64Image)
-                        .mimeType("image/jpeg").build()).build();
 
-        Part textPart = Part.builder().text("Tell me about this instrument").build();
-
-        Content content = Content.builder().role("user").parts(ImmutableList.of(textPart, imagePart)).build();
+        Content content =
+                Content.fromParts(
+                        Part.fromText("Tell me about this instrument."),
+                        Part.fromBytes(imageData, "image/jpeg"));
 
         GenerateContentResponse response = client.models.generateContent("gemini-2.0-flash", content, null);
 
@@ -97,14 +90,12 @@ public class TextGeneration {
 
         String path = media_path + "organ.jpg";
         byte[] imageData = Files.readAllBytes(Paths.get(path));
-        String base64Image = Base64.getEncoder().encodeToString(imageData);
-        Part imagePart = Part.builder()
-                .inlineData(Blob.builder().data(base64Image)
-                        .mimeType("image/jpeg").build()).build();
 
-        Part textPart = Part.builder().text("Tell me about this instrument").build();
+        Content content =
+                Content.fromParts(
+                        Part.fromText("Tell me about this instrument."),
+                        Part.fromBytes(imageData, "image/jpeg"));
 
-        Content content = Content.builder().role("user").parts(ImmutableList.of(textPart, imagePart)).build();
 
         ResponseStream<GenerateContentResponse> responseStream =
                 client.models.generateContentStream(
@@ -129,21 +120,16 @@ public class TextGeneration {
 
         String organPath = media_path + "organ.jpg";
         byte[] organImageData = Files.readAllBytes(Paths.get(organPath));
-        String organImageBase64 = Base64.getEncoder().encodeToString(organImageData);
-        Part organImagePart = Part.builder()
-                .inlineData(Blob.builder().data(organImageBase64)
-                        .mimeType("image/jpeg").build()).build();
 
         String cajunPath = media_path + "Cajun_instruments.jpg";
         byte[] cajunImageData = Files.readAllBytes(Paths.get(cajunPath));
-        String cajunImageBase64 = Base64.getEncoder().encodeToString(cajunImageData);
-        Part cajunImagePart = Part.builder()
-                .inlineData(Blob.builder().data(cajunImageBase64)
-                        .mimeType("image/jpeg").build()).build();
 
-        Part textPart = Part.builder().text("What is the difference between both of these instruments?").build();
+        Content content =
+                Content.fromParts(
+                        Part.fromText("What is the difference between both of these instruments?"),
+                        Part.fromBytes(organImageData, "image/jpeg"),
+                        Part.fromBytes(cajunImageData, "image/jpeg"));
 
-        Content content = Content.builder().role("user").parts(ImmutableList.of(textPart, organImagePart, cajunImagePart)).build();
 
         GenerateContentResponse response = client.models.generateContent("gemini-2.0-flash", content, null);
 
@@ -158,21 +144,15 @@ public class TextGeneration {
 
         String organPath = media_path + "organ.jpg";
         byte[] organImageData = Files.readAllBytes(Paths.get(organPath));
-        String organBase64Image = Base64.getEncoder().encodeToString(organImageData);
-        Part organImagePart = Part.builder()
-                .inlineData(Blob.builder().data(organBase64Image)
-                        .mimeType("image/jpeg").build()).build();
 
         String cajunPath = media_path + "Cajun_instruments.jpg";
         byte[] cajunImageData = Files.readAllBytes(Paths.get(cajunPath));
-        String cajunImageBase64 = Base64.getEncoder().encodeToString(cajunImageData);
-        Part cajunImagePart = Part.builder()
-                .inlineData(Blob.builder().data(cajunImageBase64)
-                        .mimeType("image/jpeg").build()).build();
 
-        Part textPart = Part.builder().text("What is the difference between both of these instruments?").build();
-
-        Content content = Content.builder().role("user").parts(ImmutableList.of(textPart, organImagePart, cajunImagePart)).build();
+        Content content =
+                Content.fromParts(
+                        Part.fromText("What is the difference between both of these instruments?"),
+                        Part.fromBytes(organImageData, "image/jpeg"),
+                        Part.fromBytes(cajunImageData, "image/jpeg"));
 
         ResponseStream<GenerateContentResponse> responseStream =
                 client.models.generateContentStream("gemini-2.0-flash", content, null);
@@ -194,14 +174,10 @@ public class TextGeneration {
 
         String path = media_path + "sample.mp3";
         byte[] audioData = Files.readAllBytes(Paths.get(path));
-        String audioBase64 = Base64.getEncoder().encodeToString(audioData);
-        Part audioPart = Part.builder()
-                .inlineData(Blob.builder().data(audioBase64)
-                        .mimeType("audio/mpeg").build()).build();
 
-        Part textPart = Part.builder().text("Give me a summary of this audio file.").build();
-
-        Content content = Content.builder().role("user").parts(ImmutableList.of(textPart, audioPart)).build();
+        Content content =
+                Content.fromParts(Part.fromText("Give me a summary of this audio file."),
+                        Part.fromBytes(audioData, "audio/mpeg"));
 
         GenerateContentResponse response = client.models.generateContent("gemini-2.0-flash", content, null);
 
@@ -216,14 +192,10 @@ public class TextGeneration {
 
         String path = media_path + "sample.mp3";
         byte[] audioData = Files.readAllBytes(Paths.get(path));
-        String audioBase64 = Base64.getEncoder().encodeToString(audioData);
-        Part audioPart = Part.builder()
-                .inlineData(Blob.builder().data(audioBase64)
-                        .mimeType("audio/mpeg").build()).build();
 
-        Part textPart = Part.builder().text("Give me a summary of this audio file.").build();
-
-        Content content = Content.builder().role("user").parts(ImmutableList.of(textPart, audioPart)).build();
+        Content content =
+                Content.fromParts(Part.fromText("Give me a summary of this audio file."),
+                        Part.fromBytes(audioData, "audio/mpeg"));
 
         ResponseStream<GenerateContentResponse> responseStream =
                 client.models.generateContentStream("gemini-2.0-flash", content, null);
@@ -245,14 +217,10 @@ public class TextGeneration {
 
         String path = media_path + "Big_Buck_Bunny.mp4";
         byte[] videoData = Files.readAllBytes(Paths.get(path));
-        String videoBase64 = Base64.getEncoder().encodeToString(videoData);
-        Part videoPart = Part.builder()
-                .inlineData(Blob.builder().data(videoBase64)
-                        .mimeType("video/mp4").build()).build();
 
-        Part textPart = Part.builder().text("Describe this video clip").build();
-
-        Content content = Content.builder().role("user").parts(ImmutableList.of(textPart, videoPart)).build();
+        Content content =
+                Content.fromParts(Part.fromText("Describe this video clip."),
+                        Part.fromBytes(videoData, "video/mp4"));
 
         GenerateContentResponse response = client.models.generateContent("gemini-2.0-flash", content, null);
 
@@ -267,14 +235,10 @@ public class TextGeneration {
 
         String path = media_path + "Big_Buck_Bunny.mp4";
         byte[] videoData = Files.readAllBytes(Paths.get(path));
-        String videoBase64 = Base64.getEncoder().encodeToString(videoData);
-        Part videoPart = Part.builder()
-                .inlineData(Blob.builder().data(videoBase64)
-                        .mimeType("video/mp4").build()).build();
 
-        Part textPart = Part.builder().text("Describe this video clip").build();
-
-        Content content = Content.builder().role("user").parts(ImmutableList.of(textPart, videoPart)).build();
+        Content content =
+                Content.fromParts(Part.fromText("Describe this video clip."),
+                        Part.fromBytes(videoData, "video/mp4"));
 
         ResponseStream<GenerateContentResponse> responseStream =
                 client.models.generateContentStream("gemini-2.0-flash", content, null);
@@ -296,14 +260,10 @@ public class TextGeneration {
 
         String path = media_path + "test.pdf";
         byte[] pdfData = Files.readAllBytes(Paths.get(path));
-        String pdfBase64 = Base64.getEncoder().encodeToString(pdfData);
-        Part pdfPart = Part.builder()
-                .inlineData(Blob.builder().data(pdfBase64)
-                        .mimeType("application/pdf").build()).build();
 
-        Part textPart = Part.builder().text("Give me a summary of this document.").build();
-
-        Content content = Content.builder().role("user").parts(ImmutableList.of(textPart, pdfPart)).build();
+        Content content =
+                Content.fromParts(Part.fromText("Give me a summary of this document."),
+                        Part.fromBytes(pdfData, "application/pdf"));
 
         GenerateContentResponse response = client.models.generateContent("gemini-2.0-flash", content, null);
 
@@ -318,14 +278,10 @@ public class TextGeneration {
 
         String path = media_path + "test.pdf";
         byte[] pdfData = Files.readAllBytes(Paths.get(path));
-        String pdfBase64 = Base64.getEncoder().encodeToString(pdfData);
-        Part pdfPart = Part.builder()
-                .inlineData(Blob.builder().data(pdfBase64)
-                        .mimeType("application/pdf").build()).build();
 
-        Part textPart = Part.builder().text("Give me a summary of this document.").build();
-
-        Content content = Content.builder().role("user").parts(ImmutableList.of(textPart, pdfPart)).build();
+        Content content =
+                Content.fromParts(Part.fromText("Give me a summary of this document."),
+                        Part.fromBytes(pdfData, "application/pdf"));
 
         ResponseStream<GenerateContentResponse> responseStream =
                 client.models.generateContentStream("gemini-2.0-flash", content, null);

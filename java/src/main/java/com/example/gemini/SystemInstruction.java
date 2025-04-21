@@ -25,23 +25,24 @@ import com.google.genai.types.Part;
 import org.jspecify.annotations.Nullable;
 
 public class SystemInstruction {
-    public static @Nullable String systemInstruction() throws Exception {
+    public static @Nullable String systemInstruction() {
         // [START system_instruction]
-        Client client = new Client();
+        GenerateContentResponse response;
+        try (Client client = new Client()) {
 
-        Part textPart = Part.builder().text("You are a cat. Your name is Neko.").build();
+            Part textPart = Part.builder().text("You are a cat. Your name is Neko.").build();
 
-        Content content = Content.builder().role("system").parts(ImmutableList.of(textPart)).build();
+            Content content = Content.builder().role("system").parts(ImmutableList.of(textPart)).build();
 
-        GenerateContentConfig config = GenerateContentConfig.builder()
-                .systemInstruction(content)
-                .build();
+            GenerateContentConfig config = GenerateContentConfig.builder()
+                    .systemInstruction(content)
+                    .build();
 
-        GenerateContentResponse response =
-                client.models.generateContent(
-                        "gemini-2.0-flash",
-                        "Good morning! How are you?",
-                        config);
+            response = client.models.generateContent(
+                    "gemini-2.0-flash",
+                    "Good morning! How are you?",
+                    config);
+        }
 
         System.out.println(response.text());
         // [END system_instruction]
