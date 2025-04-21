@@ -108,8 +108,11 @@ public class FunctionCalling {
                 )
                 .build();
 
-        GenerateContentResponse response;
-            response = client.models.generateContent("gemini-2.0-flash", "I have 57 cats, each owns 44 mittens, how many mittens is that in total?", config);
+        GenerateContentResponse response =
+                client.models.generateContent(
+                        "gemini-2.0-flash",
+                        "I have 57 cats, each owns 44 mittens, how many mittens is that in total?",
+                        config);
 
 
         if (response.functionCalls() == null || response.functionCalls().isEmpty()) {
