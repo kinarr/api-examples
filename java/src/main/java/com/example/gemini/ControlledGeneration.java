@@ -16,9 +16,7 @@
 
 package com.example.gemini;
 
-import com.google.common.collect.ImmutableList;
 import com.google.genai.Client;
-import com.google.genai.types.Blob;
 import com.google.genai.types.Content;
 import com.google.genai.types.GenerateContentConfig;
 import com.google.genai.types.GenerateContentResponse;
@@ -30,14 +28,13 @@ import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 
 import static com.example.gemini.BuildConfig.media_path;
 
 public class ControlledGeneration {
-    public static @Nullable String jsonControlledGeneration() throws Exception {
+    public static @Nullable String jsonControlledGeneration() {
         // [START json_controlled_generation]
         Client client = new Client();
 
@@ -77,7 +74,7 @@ public class ControlledGeneration {
         return response.text();
     }
 
-    public static @Nullable String jsonNoSchema() throws Exception {
+    public static @Nullable String jsonNoSchema() {
         // [START json_no_schema]
         Client client = new Client();
 
@@ -116,14 +113,11 @@ public class ControlledGeneration {
 
         String path = media_path + "organ.jpg";
         byte[] imageData = Files.readAllBytes(Paths.get(path));
-        String base64Image = Base64.getEncoder().encodeToString(imageData);
-        Part imagePart = Part.builder()
-                .inlineData(Blob.builder().data(base64Image)
-                        .mimeType("image/jpeg").build()).build();
 
-        Part textPart = Part.builder().text("What kind of instrument is this:").build();
-
-        Content content = Content.builder().role("user").parts(ImmutableList.of(textPart, imagePart)).build();
+        Content content =
+                Content.fromParts(
+                        Part.fromText("What kind of instrument is this:"),
+                        Part.fromBytes(imageData, "image/jpeg"));
 
         GenerateContentConfig config =
                 GenerateContentConfig.builder()
@@ -193,14 +187,11 @@ public class ControlledGeneration {
 
         String path = media_path + "organ.jpg";
         byte[] imageData = Files.readAllBytes(Paths.get(path));
-        String base64Image = Base64.getEncoder().encodeToString(imageData);
-        Part imagePart = Part.builder()
-                .inlineData(Blob.builder().data(base64Image)
-                        .mimeType("image/jpeg").build()).build();
 
-        Part textPart = Part.builder().text("What kind of instrument is this:").build();
-
-        Content content = Content.builder().role("user").parts(ImmutableList.of(textPart, imagePart)).build();
+        Content content =
+                Content.fromParts(
+                        Part.fromText("What kind of instrument is this:"),
+                        Part.fromBytes(imageData, "image/jpeg"));
 
         GenerateContentConfig config =
                 GenerateContentConfig.builder()

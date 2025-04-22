@@ -27,7 +27,7 @@ import java.util.Collections;
 
 @SuppressWarnings("resource")
 public class CodeExecution {
-    public static GenerateContentResponse codeExecutionBasic() throws Exception {
+    public static GenerateContentResponse codeExecutionBasic() {
         // [START code_execution_basic]
         Client client = new Client();
 
@@ -94,7 +94,7 @@ public class CodeExecution {
         return response;
     }
 
-    public static GenerateContentResponse codeExecutionRequestOverride() throws Exception {
+    public static GenerateContentResponse codeExecutionRequestOverride() {
         // [START code_execution_request_override]
         Client client = new Client();
 

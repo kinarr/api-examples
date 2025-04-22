@@ -33,7 +33,7 @@ import java.util.Map;
 import java.util.function.BiFunction;
 
 public class FunctionCalling {
-    public static Double functionCalling() throws Exception {
+    public static Double functionCalling() {
         // [START function_calling]
         Client client = new Client();
 
@@ -108,12 +108,12 @@ public class FunctionCalling {
                 )
                 .build();
 
-        GenerateContentResponse response;
-        try {
-            response = client.models.generateContent("gemini-2.0-flash", "I have 57 cats, each owns 44 mittens, how many mittens is that in total?", config);
-        } catch (HttpException e) {
-            throw new RuntimeException(e);
-        }
+        GenerateContentResponse response =
+                client.models.generateContent(
+                        "gemini-2.0-flash",
+                        "I have 57 cats, each owns 44 mittens, how many mittens is that in total?",
+                        config);
+
 
         if (response.functionCalls() == null || response.functionCalls().isEmpty()) {
             System.err.println("No function call received");
